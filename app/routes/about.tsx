@@ -1,0 +1,107 @@
+import type { Route } from './+types/about';
+import { NavLink } from 'react-router';
+
+// Bootstrap styling
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Navbar from 'react-bootstrap/Navbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "Part of The Story" },
+    { name: "description", content: "Where will your story go?" },
+  ];
+}
+
+
+// server loader so that we can get environment values
+export async function loader() {
+	return process.env.APP_BASE_URL + ":" + process.env.APP_BASE_PORT
+}
+
+
+export async function clientLoader({ 
+    serverLoader
+}: Route.ClientLoaderArgs) {
+
+    const api_url = await serverLoader();
+
+	let user_status = null;
+
+	try {
+		user_status = await fetch(api_url+"/home/", {credentials: "include"}).then(res => res.json())
+	}
+	catch(err) {
+		user_status = undefined
+	}
+
+  	return user_status;
+}
+
+
+export function HydrateFallback() {
+  return <p>Loading Data...</p>;
+}
+
+
+export default function About({
+	loaderData,
+}: Route.ComponentProps) {
+
+    const user_status = loaderData;
+    const user_name = user_status?.user?.user_name;
+
+  	return (
+		<Container fluid>
+            <Row>
+				<Col>
+					<Navbar>
+						<Container fluid className="ms-0">
+							<Navbar.Brand>
+								{user_name !== undefined ?
+								<small className="mb-40">Welcome {user_name}</small>
+								: ""}
+								<h1 className="parisienne-regular mt-2">Be part of the story</h1>
+							</Navbar.Brand>
+						</Container>
+					</Navbar>
+				</Col>
+			</Row>
+			<Row>
+				<Col>
+                    <Card>
+                        <Card.Body>
+                            <h4>Blurb</h4>
+                            <p>Did you ever play that game where you took it in turns to draw part of a picture. Each time you drew a part you folded the paper over and the next person only saw the end of your picture. At the end you laughed at your weird creation. Well...</p>
+                            <p>Write a story with other people. Every story has five parts. You are randomly assigned a part from an unfinished story when you choose to write. To help you some of the end of the previous part is shown to you along with the title of the story. If you are writing the first part you get to decide the story title too. Once the last part is complete the story is published for everyone to see.</p>
+                            <p>What is your story?</p>
+
+                            <h4>How does it work?</h4>
+                            <p>If you are not logged in:</p>
+                            <ul>
+                                <li>You can see a random story from the list of completed stories created by other users. <b>Get Random Story</b> gets you another</li>
+                                <li>You can login using your Google ID to unlock the ability to contribute to stories</li>
+                            </ul>
+                            <p>Logging in to create stories:</p>
+                            <ul>
+                                <li>Login using your Google account</li>
+                                <li>When you select <b>Write</b> you are assigned a random unassigned part from a story. Write your part then either <b>Save</b> it to come back to it later or <b>Submit</b> it when you are finished</li>
+                                <li>Choose <b>My Stories</b> to see the completed stories you have contributed to. The part(s) you wrote will be highlighted</li>
+                            </ul>
+                            <h4>Data we collect</h4>
+                            <p>The only information of yours we store is your Google user id, which is used to identify the stories you contributed to. A session cookie stores your Google login so you can use the parts of the site that need you to be logged in.</p>
+						</Card.Body>
+                        <Card.Footer>
+                            <NavLink to="/" end><Button className="me-1">Home</Button></NavLink>			
+                        </Card.Footer>
+					</Card>
+				</Col>
+			</Row>
+		</Container>
+	);
+}
