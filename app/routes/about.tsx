@@ -36,9 +36,6 @@ export async function clientLoader() {
 }
 
 
-clientLoader.hydrate = true as const;
-
-
 export default function About({
 	loaderData,
 }: Route.ComponentProps) {

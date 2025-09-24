@@ -23,9 +23,6 @@ export function meta({}: Route.MetaArgs) {
 }
 
 
-clientLoader.hydrate = true as const;
-
-
 export async function clientLoader() {
 
 	const api_url = import.meta.env.VITE_APP_BASE_URL + ":" + import.meta.env.VITE_APP_BASE_PORT;
