@@ -25,24 +25,16 @@ export function meta({}: Route.MetaArgs) {
 }
 
 
-// server loader so that we can get environment values
-export async function loader() {
-	return process.env.APP_BASE_URL + ":" + process.env.APP_BASE_PORT
-}
+export async function clientLoader() {
 
-
-export async function clientLoader({
-	serverLoader
-}: Route.ClientLoaderArgs) {
-
-	const api_url = await serverLoader();
+	const api_url = import.meta.env.VITE_APP_BASE_URL + ":" + import.meta.env.VITE_APP_BASE_PORT;
 
     let user_status = null;
     try {
     	user_status = await fetch(api_url+"/home/", {credentials: "include"}).then(res => res.json())
     }
     catch(err) {
-		console.log("exception")
+		console.log(err)
     }
 
 	if (user_status.detail && user_status.detail == "Session expired. Please login again.") {
@@ -64,11 +56,8 @@ export async function clientLoader({
   	return {api_url, part, prev_part_text, user_status, message};
 }
 
-clientLoader.hydrate = true as const;
 
-export function HydrateFallback() {
-	return <p>Loading Data...</p>;
-}
+clientLoader.hydrate = true as const;
 
 
 export async function clientAction({

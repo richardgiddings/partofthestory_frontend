@@ -12,24 +12,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Part of The Story" },
-    { name: "description", content: "Where will your story go?" },
-  ];
+	return [
+		{ title: "Part of The Story" },
+		{ name: "description", content: "Where will your story go?" },
+	];
 }
 
 
-// server loader so that we can get environment values
-export async function loader() {
-	return process.env.APP_BASE_URL + ":" + process.env.APP_BASE_PORT
-}
+export async function clientLoader() {
 
-
-export async function clientLoader({ 
-    serverLoader
-}: Route.ClientLoaderArgs) {
-
-    const api_url = await serverLoader();
+	const api_url = import.meta.env.VITE_APP_BASE_URL + ":" + import.meta.env.VITE_APP_BASE_PORT;
 
 	let user_status = null;
 
@@ -44,9 +36,7 @@ export async function clientLoader({
 }
 
 
-export function HydrateFallback() {
-  return <p>Loading Data...</p>;
-}
+clientLoader.hydrate = true as const;
 
 
 export default function About({

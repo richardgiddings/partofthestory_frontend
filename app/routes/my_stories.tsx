@@ -23,24 +23,12 @@ export function meta({}: Route.MetaArgs) {
 }
 
 
-// server loader so that we can get environment values
-export async function loader() {
-	return process.env.APP_BASE_URL + ":" + process.env.APP_BASE_PORT
-}
-
-
 clientLoader.hydrate = true as const;
 
-export function HydrateFallback() {
-  return <p>Loading Data...</p>;
-}
 
+export async function clientLoader() {
 
-export async function clientLoader({
-	serverLoader
-}: Route.ClientLoaderArgs) {
-
-	const api_url = await serverLoader();
+	const api_url = import.meta.env.VITE_APP_BASE_URL + ":" + import.meta.env.VITE_APP_BASE_PORT;
 
 	const user = await fetch(api_url+"/home/", {credentials: "include"}).then((res) => res.json())
 

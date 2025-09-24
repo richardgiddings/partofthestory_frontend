@@ -1,5 +1,5 @@
 import type { Route } from './+types/home';
-import { NavLink } from 'react-router';
+import { NavLink, useMatches } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 
 // Bootstrap styling
@@ -20,18 +20,12 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-// server loader so that we can get environment values
-export async function loader() {
-	return process.env.APP_BASE_URL + ":" + process.env.APP_BASE_PORT
-}
-
 
 export async function clientLoader({ 
 	request,
-	serverLoader
 }: Route.ClientLoaderArgs) {
 
-	const api_url = await serverLoader();
+	const api_url = import.meta.env.VITE_APP_BASE_URL + ":" + import.meta.env.VITE_APP_BASE_PORT;
 
 	let story = null
 	try {
@@ -58,10 +52,6 @@ export async function clientLoader({
 
 clientLoader.hydrate = true as const;
 
-export function HydrateFallback() {
-  return <p>Loading Data...</p>;
-}
-
 
 export default function Home({
 	loaderData,
@@ -78,9 +68,9 @@ export default function Home({
 	}
 
 	const user_name = user_status?.user?.user_name;
-	const formatted_date = 
-		new Date(story?.date_complete).toLocaleDateString(
-			"en-GB", { year: "numeric", month: "long", day: "numeric"});
+	//const formatted_date = 
+	//	new Date(story?.date_complete).toLocaleDateString(
+	//		"en-GB", { year: "numeric", month: "long", day: "numeric"});
 
   	return (
 		<Container fluid>
