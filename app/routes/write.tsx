@@ -70,7 +70,8 @@ export async function clientAction({
 	let action = formData.get("action");
 
 	if(action == "save"){
-		const result = await fetch(`${api_url}/save_part/${part_id}`, {
+		try {
+			const result = await fetch(`${api_url}/save_part/${part_id}`, {
 									method: "PATCH",
 									headers: { 
 										"Content-Type": "application/json"
@@ -82,34 +83,59 @@ export async function clientAction({
 											part_text: part_text
 										}
 									)
-								})
+								}).then((res) => res.json())
 
-		if (result.status >= 200 && result.status <= 299) {
-			return "Story Saved."
+			if (result.status >= 200 && result.status <= 299) {
+				return "Story Saved."
+			}
+
+			if(result.results.length > 0) {
+				let bad_words = ""
+				for (let i = 0; i < result.results.length; i++) {
+					bad_words = bad_words + result.results[i].word + " "
+				}
+				return "Story wasn't saved due to these words: " + bad_words
+			}
+
+			return "Something went wrong."
 		}
-		
-		return "Something went wrong..."
+		catch(err) {
+			console.log(err)
+		}
 	}
 	else if (action == "submit") {
-		const result = await fetch(`${api_url}/complete_part/${part_id}`, {
-									method: "PATCH",
-									headers: { 
-										"Content-Type": "application/json"
-									},
-									credentials: "include",
-									body: JSON.stringify(
-										{
-											story_title: story_title,
-											part_text: part_text
-										}
-									)
-								})
-		
-		if (result.status >= 200 && result.status <= 299) {
-			throw redirect("/?submit=1");
+		try {
+			const result = await fetch(`${api_url}/complete_part/${part_id}`, {
+										method: "PATCH",
+										headers: { 
+											"Content-Type": "application/json"
+										},
+										credentials: "include",
+										body: JSON.stringify(
+											{
+												story_title: story_title,
+												part_text: part_text
+											}
+										)
+									}).then((res) => res.json())
+			
+			if (result.status >= 200 && result.status <= 299) {
+				throw redirect("/?submit=1");
+			}
+
+			if(result.results.length > 0) {
+				let bad_words = ""
+				for (let i = 0; i < result.results.length; i++) {
+					bad_words = bad_words + result.results[i].word + " "
+				}
+				return "Story wasn't saved due to these words: " + bad_words
+			}
+			
+			return "Something went wrong..."
 		}
-		
-		return "Something went wrong..."
+		catch(err) {
+			console.log(err)
+		}
 	}
 	else {
 		return "Invalid action: " + action
@@ -194,17 +220,21 @@ export default function Write({
 									<FormText id="partTextHelpBlock" muted>Minimum of 50 characters and a maximum of 1000 characters. {count} used so far.</FormText>
 									<FormControl name="part_id" type="hidden" value={part.id} />
 									<FormControl name="api_url" type="hidden" value={api_url} />
-								</FormGroup>
+								</FormGroup>								
 								<ButtonGroup aria-label="Save and Submit buttons" className="right">
 									<Button name="action" value="save" type="submit">Save</Button>
 									<Button name="action" value="submit" type="submit">Submit</Button>
 								</ButtonGroup>
 							</Form>
 						</Card.Body>
+						<Card.Body>
+							<Card.Text className="right">
+								{actionData ? actionData : ""}
+							</Card.Text>
+						</Card.Body>
 						<Card.Footer>
 							<NavLink to="/" end><Button className="me-1">Home</Button></NavLink>
-							<NavLink to="/my_stories" end><Button className="ms-1">My Stories</Button></NavLink>
-							{actionData ? (<div className="right pt-1">{actionData}</div>) : ""}				
+							<NavLink to="/my_stories" end><Button className="ms-1">My Stories</Button></NavLink>				
 						</Card.Footer>
 					</Card>
 				</Col>

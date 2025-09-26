@@ -1,5 +1,5 @@
 import type { Route } from './+types/about';
-import { NavLink } from 'react-router';
+import { NavLink, Link } from 'react-router';
 
 // Bootstrap styling
 import Container from 'react-bootstrap/Container';
@@ -42,6 +42,7 @@ export default function About({
 
     const user_status = loaderData;
     const user_name = user_status?.user?.user_name;
+	const contact_email = import.meta.env.VITE_APP_EMAIL
 
   	return (
 		<Container fluid>
@@ -82,6 +83,8 @@ export default function About({
                             </ul>
                             <h4>Data we collect</h4>
                             <p>The only information of yours we store is your Google user id, which is used to identify the stories you contributed to. A session cookie stores your Google login so you can use the parts of the site that need you to be logged in.</p>
+							<h4>Moderating the stories</h4>
+							<p>We try to stop bad words from appearing on the website, but no system is perfect. If you think that a word has been unfairly identified stopping you from submitting your part of a story or you think that a story or part of a story should not be shown on the site <Link to='#' onClick={(e) => { window.location.href = contact_email; e.preventDefault(); }}>get in touch</Link>.</p>
 						</Card.Body>
                         <Card.Footer>
                             <NavLink to="/" end><Button className="me-1">Home</Button></NavLink>			
