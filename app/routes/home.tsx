@@ -118,7 +118,7 @@ export default function Home({
 								<h4>{story.title}</h4>
 							</Card.Title>
 							{story.parts?.map((part: any) => (
-								<Card.Text key={part.id}>{part.part_text}</Card.Text>
+								<Card.Text key={part.id}>{typeof part.part_text === "string" ? part.part_text : JSON.stringify(part.part_text)}</Card.Text>
 							))}
 						</Card.Body>
 						}
