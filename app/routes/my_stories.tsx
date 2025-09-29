@@ -30,7 +30,7 @@ export async function clientLoader() {
 	const user = await fetch(api_url+"/home/", {credentials: "include"}).then((res) => res.json())
 
 	if (user.detail && user.detail == "Session expired. Please login again.") {
-		return redirect("/");
+		return redirect("/index.html");
 	}
 
 	return {api_url, user};
@@ -133,7 +133,7 @@ export default function MyStories({
 							<Container className="pb-0" fluid>
 								<Row>
 									<Col>
-										<NavLink to="/" end><Button>Home</Button></NavLink>
+										<NavLink to="/index.html" end><Button>Home</Button></NavLink>
 									</Col>
 									<Col md="auto">
 										<Pagination className="pb-0">

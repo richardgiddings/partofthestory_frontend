@@ -38,7 +38,7 @@ export async function clientLoader() {
     }
 
 	if (user_status.detail && user_status.detail == "Session expired. Please login again.") {
-		throw redirect("/");
+		throw redirect("/index.html");
 	}
 
 	const part = await fetch(api_url+"/get_part/", {credentials: "include"}).then(res => res.json())
@@ -119,7 +119,7 @@ export async function clientAction({
 								}).then((res) => res.json())
 		
 		if (result.status >= 200 && result.status <= 299) {
-			return redirect("/?submit=1");
+			return redirect("/index.html?submit=1");
 		}
 
 		if(result.results.length > 0) {
@@ -146,7 +146,7 @@ export default function Write({
 	const {api_url, part, prev_part_text, user_status, message} = loaderData;
 
 	if(!user_status) {
-		throw redirect("/");
+		throw redirect("/index.html");
 	}
 	const user_name = user_status?.user?.user_name;
 
@@ -228,7 +228,7 @@ export default function Write({
 							</Card.Text>
 						</Card.Body>
 						<Card.Footer>
-							<NavLink to="/" end><Button className="me-1">Home</Button></NavLink>
+							<NavLink to="/index.html" end><Button className="me-1">Home</Button></NavLink>
 							<NavLink to="/my_stories" end><Button className="ms-1">My Stories</Button></NavLink>				
 						</Card.Footer>
 					</Card>
