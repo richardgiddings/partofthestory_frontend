@@ -84,7 +84,7 @@ export default function About({
                             <h4>Data we collect</h4>
                             <p>The only information of yours we store is your Google user id, which is used to identify the stories you contributed to. A session cookie stores your Google login so you can use the parts of the site that need you to be logged in.</p>
 							<h4>Moderating the stories</h4>
-							<p>We try to stop bad words from appearing on the website, but no system is perfect. If you think that a word has been unfairly identified stopping you from submitting your part of a story or you think that a story or part of a story should not be shown on the site <Link to='#' onClick={(e) => { window.location.href = `mailto:${contact_email}`; e.preventDefault(); }}>get in touch</Link>.</p>
+							<p>We try to stop bad words from appearing on the website, but no system is perfect. If you think that a word has been unfairly identified stopping you from submitting your part of a story or you think that a story or part of a story should not be shown on the site <Link to='#' onClick={(e) => { window.location.href = `mailto:${typeof contact_email === "string" ? contact_email : ""}`; e.preventDefault(); }}>get in touch</Link>.</p>
 						</Card.Body>
                         <Card.Footer>
                             <NavLink to="/" end><Button className="me-1">Home</Button></NavLink>			
