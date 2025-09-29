@@ -104,38 +104,33 @@ export async function clientAction({
 		}
 	}
 	else if (action == "submit") {
-		try {
-			const result = await fetch(`${api_url}/complete_part/${part_id}`, {
-										method: "PATCH",
-										headers: { 
-											"Content-Type": "application/json"
-										},
-										credentials: "include",
-										body: JSON.stringify(
-											{
-												story_title: story_title,
-												part_text: part_text
-											}
-										)
-									}).then((res) => res.json())
-			
-			if (result.status >= 200 && result.status <= 299) {
-				throw redirect("/?submit=1");
-			}
+		const result = await fetch(`${api_url}/complete_part/${part_id}`, {
+									method: "PATCH",
+									headers: { 
+										"Content-Type": "application/json"
+									},
+									credentials: "include",
+									body: JSON.stringify(
+										{
+											story_title: story_title,
+											part_text: part_text
+										}
+									)
+								}).then((res) => res.json())
+		
+		if (result.status >= 200 && result.status <= 299) {
+			return redirect("/?submit=1");
+		}
 
-			if(result.results.length > 0) {
-				let bad_words = ""
-				for (let i = 0; i < result.results.length; i++) {
-					bad_words = bad_words + result.results[i].word + " "
-				}
-				return "Story wasn't saved due to these words: " + bad_words
+		if(result.results.length > 0) {
+			let bad_words = ""
+			for (let i = 0; i < result.results.length; i++) {
+				bad_words = bad_words + result.results[i].word + " "
 			}
-			
-			return "Something went wrong..."
+			return "Story wasn't saved due to these words: " + bad_words
 		}
-		catch(err) {
-			console.log(err)
-		}
+		
+		return "Something went wrong..."
 	}
 	else {
 		return "Invalid action: " + action
