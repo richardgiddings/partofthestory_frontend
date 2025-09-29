@@ -182,19 +182,19 @@ export default function Write({
 										name="story_title" 
 										type="text" 
 										maxLength={50} 
-										defaultValue={part.story.title}
+										defaultValue={typeof part.story.title === "string" ? part.story.title : JSON.stringify(part.story.title)}
 										required />
 									<FormText className="text-muted">
 									{message}
 									</FormText>
 								</FormGroup> 
-								: <h3 className="archivo-black-regular">{part_number > 1 ? part.story.title : ""}</h3>}
+								: <h3 className="archivo-black-regular">{part_number > 1 ? (typeof part.story.title === "string" ? part.story.title : JSON.stringify(part.story.title)) : ""}</h3>}
 								<FormGroup className="mb-3" controlId="formPartText">
 									<FormLabel>
 										{part_number > 1 ? 
 										<div>
 										<b>The end of the previous part was: </b>
-										<p className="wrap_text">{prev_part_text}</p>
+										<p className="wrap_text">{typeof prev_part_text === "string" ? prev_part_text : JSON.stringify(prev_part_text)}</p>
 										<b>Continue the story with your part here:</b>
 										</div>
 										:
@@ -209,7 +209,7 @@ export default function Write({
 										rows={10} 
 										minLength={50} 
 										maxLength={1000} 
-										defaultValue={part.part_text} 
+										defaultValue={typeof part.part_text === "string" ? part.part_text : JSON.stringify(part.part_text)}
 										onChange={e => setCount(e.target.value.length)} 
 										required/>
 									<FormText id="partTextHelpBlock" muted>Minimum of 50 characters and a maximum of 1000 characters. {count} used so far.</FormText>
