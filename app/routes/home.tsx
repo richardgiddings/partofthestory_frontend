@@ -115,7 +115,7 @@ export default function Home({
 						</Card.Body> :
 						<Card.Body>
 							<Card.Title className="archivo-black-regular mb-3">
-								<h4>{story.title}</h4>
+								<h4>{typeof story?.title === "string" ? story.title : JSON.stringify(story?.title)}</h4>
 							</Card.Title>
 							{story.parts?.map((part: any) => (
 								<Card.Text key={part.id}>{typeof part.part_text === "string" ? part.part_text : JSON.stringify(part.part_text)}</Card.Text>
