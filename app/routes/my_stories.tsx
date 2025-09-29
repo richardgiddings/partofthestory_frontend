@@ -118,9 +118,9 @@ export default function MyStories({
 									{story?.parts.map((part: any) => (
 										<div key={part.id}>
 										{part.user_id === my_user_id ? (
-											<p><b>{part.part_text}</b></p>
+											<p><b>{typeof part.part_text === "string" ? part.part_text : JSON.stringify(part.part_text)}</b></p>
 										) : (
-											<p>{part.part_text}</p>
+											<p>{typeof part.part_text === "string" ? part.part_text : JSON.stringify(part.part_text)}</p>
 										)}
 										</div>
 									))}
