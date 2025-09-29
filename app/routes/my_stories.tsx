@@ -113,7 +113,7 @@ export default function MyStories({
 							<Accordion defaultActiveKey="0">
 							{stories?.map((story: any) => (
 								<Accordion.Item eventKey={story.id} key={story.id}>
-									<Accordion.Header className="archivo-black-regular">{story.title}</Accordion.Header>
+									<Accordion.Header className="archivo-black-regular">{typeof story.title === "string" ? story.title : JSON.stringify(story.title)}</Accordion.Header>
 									<Accordion.Body>
 									{story?.parts.map((part: any) => (
 										<div key={part.id}>
