@@ -25,7 +25,7 @@ export function meta({}: Route.MetaArgs) {
 
 export async function clientLoader() {
 
-	const api_url = import.meta.env.VITE_APP_BASE_URL + ":" + import.meta.env.VITE_APP_BASE_PORT;
+	const api_url = import.meta.env.VITE_APP_URL;
 
 	const user = await fetch(api_url+"/home/", {credentials: "include"}).then((res) => res.json())
 

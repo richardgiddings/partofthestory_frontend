@@ -25,7 +25,7 @@ export async function clientLoader({
 	request,
 }: Route.ClientLoaderArgs) {
 
-	const api_url = import.meta.env.VITE_APP_BASE_URL + ":" + import.meta.env.VITE_APP_BASE_PORT;
+	const api_url = import.meta.env.VITE_APP_URL;
 
 	let story = null
 	try {
