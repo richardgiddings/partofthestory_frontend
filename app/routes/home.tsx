@@ -125,8 +125,8 @@ export default function Home({
 						<Card.Footer className="text-muted">
 							<NavLink to="/about" end><Button>About</Button></NavLink>
 							<Button onClick={() => navigate(".", { replace: true })} className="ms-1">Read Another Story</Button>
-							 {user_name !== undefined ? <NavLink to="write/" end><Button className="ms-1">Write</Button></NavLink>: ""}
-							 {user_name !== undefined ? <NavLink to="my_stories" end><Button className="ms-1">My Stories</Button></NavLink>: ""}
+							 {user_name !== undefined ? <NavLink to="/write" end><Button className="ms-1">Write</Button></NavLink>: ""}
+							 {user_name !== undefined ? <NavLink to="/my_stories" end><Button className="ms-1">My Stories</Button></NavLink>: ""}
 							 <div className="right text-muted mt-2">{submitted_message}</div>
 						</Card.Footer>
 					</Card>
