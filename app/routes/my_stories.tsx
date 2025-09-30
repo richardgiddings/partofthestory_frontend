@@ -156,7 +156,7 @@ export default function MyStories({
 							<Container className="pb-0" fluid>
 								<Row>
 									<Col>
-										<NavLink to="/" end><Button>Home</Button></NavLink>
+										<NavLink to="/index.html" end><Button>Home</Button></NavLink>
 									</Col>
 								</Row>					
 							</Container>
