@@ -180,7 +180,8 @@ export default function Write({
 									<FormLabel>Story Title</FormLabel>
 									<FormControl 
 										name="story_title" 
-										type="text" 
+										type="text"
+										minLength={5} 
 										maxLength={50} 
 										defaultValue={typeof part.story.title === "string" ? part.story.title : JSON.stringify(part.story.title)}
 										required />
