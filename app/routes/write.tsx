@@ -181,7 +181,7 @@ export default function Write({
 									<FormControl 
 										name="story_title" 
 										type="text"
-										minLength={5} 
+										minLength={2} 
 										maxLength={50} 
 										defaultValue={typeof part.story.title === "string" ? part.story.title : JSON.stringify(part.story.title)}
 										required />
