@@ -15,7 +15,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Part of The Story" },
+    { title: "Be Part of The Story" },
     { name: "description", content: "Where will your story go?" },
   ];
 }
