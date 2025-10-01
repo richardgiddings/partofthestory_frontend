@@ -115,7 +115,7 @@ export default function MyStories({
 								<Accordion.Item eventKey={story.id} key={story.id}>
 									<Accordion.Header className="archivo-black-regular">{typeof story.title === "string" ? story.title : JSON.stringify(story.title)}</Accordion.Header>
 									<Accordion.Body>
-									{story?.parts.map((part: any) => (
+									{story?.parts.sort((a: any,b: any) => (a.part_number > b.part_number) ? 1 : ((b.part_number > a.part_number) ? -1 : 0)).map((part: any) => (
 										<div key={part.id}>
 										{part.user_id === my_user_id ? (
 											<p><b>{typeof part.part_text === "string" ? part.part_text : JSON.stringify(part.part_text)}</b></p>
