@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -125,8 +126,25 @@ export default function Home({
 						<Card.Footer className="text-muted">
 							<NavLink to="/about" end><Button>About</Button></NavLink>
 							<Button onClick={() => navigate(".", { replace: true })} className="ms-1">Read Another Story</Button>
-							 {user_name !== undefined ? <NavLink to="/write" end><Button className="ms-1">Write</Button></NavLink>: ""}
-							 {user_name !== undefined ? <NavLink to="/my_stories" end><Button className="ms-1">My Stories</Button></NavLink>: ""}
+
+							{user_name !== undefined ?
+							   <Nav>
+									<NavDropdown title="Go">
+										<NavDropdown.Item href="#action1">
+											<Button onClick={() => navigate(".", { replace: true })} className="ms-1">Read Another Story</Button>	
+										</NavDropdown.Item>
+										<NavDropdown.Item href="#action2">
+											<NavLink to="/write" end><Button className="ms-1">Write</Button></NavLink>
+										</NavDropdown.Item>
+										<NavDropdown.Item href="#action2">
+											<NavLink to="/my_stories" end><Button className="ms-1">My Stories</Button></NavLink>
+										</NavDropdown.Item>
+									</NavDropdown> 
+							   </Nav>
+							   :
+							   <Button onClick={() => navigate(".", { replace: true })} className="ms-1">Read Another Story</Button>
+							}
+							  
 							 <div className="right text-muted mt-2">{submitted_message}</div>
 						</Card.Footer>
 					</Card>
