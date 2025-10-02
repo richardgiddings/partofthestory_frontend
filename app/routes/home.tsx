@@ -124,12 +124,12 @@ export default function Home({
 						</Card.Body>
 						}
 						<Card.Footer className="text-muted">
-							<NavLink to="/about" end><Button>About</Button></NavLink>
-							<Button onClick={() => navigate(".", { replace: true })} className="ms-1">Read Another Story</Button>
-
 							{user_name !== undefined ?
 							   <Nav>
 									<NavDropdown title="Go">
+										<NavDropdown.Item href="#action1">
+											<NavLink to="/about" end><Button>About</Button></NavLink>
+										</NavDropdown.Item>
 										<NavDropdown.Item href="#action1">
 											<Button onClick={() => navigate(".", { replace: true })} className="ms-1">Read Another Story</Button>	
 										</NavDropdown.Item>
@@ -142,7 +142,10 @@ export default function Home({
 									</NavDropdown> 
 							   </Nav>
 							   :
-							   <Button onClick={() => navigate(".", { replace: true })} className="ms-1">Read Another Story</Button>
+							   <Nav>
+									<NavLink to="/about" end><Button>About</Button></NavLink>
+									<Button onClick={() => navigate(".", { replace: true })} className="ms-1">Read Another Story</Button>
+							   </Nav>
 							}
 							  
 							 <div className="right text-muted mt-2">{submitted_message}</div>
