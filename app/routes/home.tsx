@@ -125,7 +125,7 @@ export default function Home({
 						</Card.Body>
 						}
 						<Card.Footer className="text-muted">
-							<Container fluid>
+							<Container>
 								<Row>
 									<Col>
 										<NavLink to="/about" end><Button>About</Button></NavLink>
@@ -139,7 +139,7 @@ export default function Home({
 										</DropdownButton>
 										: "" }
 									</Col>
-									<Col className="right text-muted mt-2">
+									<Col className="text-muted mt-2 text-end">
 										{submitted_message}
 									</Col>
 								</Row>
