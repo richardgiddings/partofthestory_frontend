@@ -132,7 +132,7 @@ export default function Home({
 						<Card.Footer className="text-muted">
 							<Container fluid className="p-0">
 								<Row>
-									<Col>
+									<Col xs={2}>
 										<NavLink to="/about" end><Button>About</Button></NavLink>
 										<Button onClick={() => navigate(".", { replace: true })} className="ms-1">Another</Button>
 									</Col>
