@@ -130,7 +130,7 @@ export default function Home({
 						</Card.Body>
 						}
 						<Card.Footer className="text-muted">
-							<Container fluid>
+							<Container fluid className="p-0">
 								<Row>
 									<Col>
 										<NavLink to="/about" end><Button>About</Button></NavLink>
