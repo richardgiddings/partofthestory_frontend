@@ -134,8 +134,10 @@ export default function Home({
 								<Row>
 									<Col md="auto">
 										<NavLink to="/about" end><Button>About</Button></NavLink>
-										<Button onClick={() => navigate(".", { replace: true })} className="ms-1">Another</Button>
+										<Button onClick={() => navigate(".", { replace: true })} className="ms-1">Get Another Story</Button>
 									</Col>
+								</Row>
+								<Row>
 									<Col className="text-muted mt-2 text-end">
 										{submitted_message}
 									</Col>
