@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -124,21 +125,22 @@ export default function Home({
 						</Card.Body>
 						}
 						<Card.Footer className="text-muted">
-							<NavLink to="/about" end><Button>About</Button></NavLink>
-							<Button onClick={() => navigate(".", { replace: true })} className="ms-1">Read Another Story</Button>
-							{user_name !== undefined ?
-							   <Dropdown>
-									<Dropdown.Toggle variant="success" id="dropdown-basic">
-										Join in
-									</Dropdown.Toggle>
-									<Dropdown.Menu>
-										<Dropdown.Item href="/write">Write</Dropdown.Item>
-										<Dropdown.Item href="/my_stories">My Stories</Dropdown.Item>
-									</Dropdown.Menu>
-							   </Dropdown>
-							   : ""
-							}	  
-							<div className="right text-muted mt-2">{submitted_message}</div>
+							<Container fluid>
+								<Row>
+									<Col>
+										<NavLink to="/about" end><Button>About</Button></NavLink>
+										<Button onClick={() => navigate(".", { replace: true })} className="ms-1">Read Another Story</Button>
+										{user_name !== undefined ?
+										<DropdownButton id="dropdown-button" title="Join In" variant="primary">
+											<Dropdown.Item href="/write">Write</Dropdown.Item>
+											<Dropdown.Item href="/my_stories">My Stories</Dropdown.Item>
+										</DropdownButton>
+										: ""
+										}	  
+										<div className="right text-muted mt-2">{submitted_message}</div>
+									</Col>
+								</Row>
+							</Container>
 						</Card.Footer>
 					</Card>
 				</Col>
