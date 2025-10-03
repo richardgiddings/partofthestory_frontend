@@ -130,14 +130,17 @@ export default function Home({
 									<Col>
 										<NavLink to="/about" end><Button>About</Button></NavLink>
 										<Button onClick={() => navigate(".", { replace: true })} className="ms-1">Read Another Story</Button>
+									</Col>
+									<Col>
 										{user_name !== undefined ?
 										<DropdownButton id="dropdown-button" title="Join In" variant="primary">
 											<Dropdown.Item href="/write">Write</Dropdown.Item>
 											<Dropdown.Item href="/my_stories">My Stories</Dropdown.Item>
 										</DropdownButton>
-										: ""
-										}	  
-										<div className="right text-muted mt-2">{submitted_message}</div>
+										: "" }
+									</Col>
+									<Col className="right text-muted mt-2">
+										{submitted_message}
 									</Col>
 								</Row>
 							</Container>
