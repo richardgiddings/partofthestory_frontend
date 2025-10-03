@@ -116,12 +116,6 @@ export default function MyStories({
 						<Card.Body>
 							<Card.Title className="pb-2">
 								<small>You have contributed to {number_of_stories} stories (your parts are in <b>bold</b>)</small>
-								<Pagination className="pb-0">
-									{first_link && <Pagination.First onClick={() => fetchStories(first_link) } /> }
-									{previous_link && <Pagination.Prev onClick={() => fetchStories(previous_link) } /> }
-									{next_link && <Pagination.Next onClick={() => fetchStories(next_link) } /> }
-									{last_link && <Pagination.Last onClick={() => fetchStories(last_link) } /> }
-								</Pagination>	
 							</Card.Title>
 							<Accordion defaultActiveKey="0">
 							{stories?.map((story: any) => (
@@ -141,6 +135,12 @@ export default function MyStories({
 								</Accordion.Item>
 							))}
 							</Accordion>
+							<Pagination className="pb-0">
+								{first_link && <Pagination.First onClick={() => fetchStories(first_link) } /> }
+								{previous_link && <Pagination.Prev onClick={() => fetchStories(previous_link) } /> }
+								{next_link && <Pagination.Next onClick={() => fetchStories(next_link) } /> }
+								{last_link && <Pagination.Last onClick={() => fetchStories(last_link) } /> }
+							</Pagination>	
 						</Card.Body>
 						<Card.Footer>
 							<Container className="pb-0" fluid>
