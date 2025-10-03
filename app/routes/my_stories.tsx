@@ -111,20 +111,18 @@ export default function MyStories({
 			</Row>
 			<Row>
 				<Col>
-					<Pagination className="pb-0">
-						{first_link && <Pagination.First onClick={() => fetchStories(first_link) } /> }
-						{previous_link && <Pagination.Prev onClick={() => fetchStories(previous_link) } /> }
-						{next_link && <Pagination.Next onClick={() => fetchStories(next_link) } /> }
-						{last_link && <Pagination.Last onClick={() => fetchStories(last_link) } /> }
-					</Pagination>
-				</Col>
-			</Row>
-			<Row>
-				<Col>
 					{stories && stories.length ? 
 					<Card bg="light" text="dark">	
 						<Card.Body>
-							<Card.Title className="pb-2"><small>You have contributed to {number_of_stories} stories (your parts are in <b>bold</b>)</small></Card.Title>
+							<Card.Title className="pb-2">
+								<small>You have contributed to {number_of_stories} stories (your parts are in <b>bold</b>)</small>
+								<Pagination className="pb-0">
+									{first_link && <Pagination.First onClick={() => fetchStories(first_link) } /> }
+									{previous_link && <Pagination.Prev onClick={() => fetchStories(previous_link) } /> }
+									{next_link && <Pagination.Next onClick={() => fetchStories(next_link) } /> }
+									{last_link && <Pagination.Last onClick={() => fetchStories(last_link) } /> }
+								</Pagination>	
+							</Card.Title>
 							<Accordion defaultActiveKey="0">
 							{stories?.map((story: any) => (
 								<Accordion.Item eventKey={story.id} key={story.id}>
