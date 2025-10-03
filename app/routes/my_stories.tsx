@@ -105,18 +105,18 @@ export default function MyStories({
 									</Navbar.Brand>
 								</Col>
 							</Row>
-							<Row>
-								<Col>
-									<Pagination className="pb-0">
-										{first_link && <Pagination.First onClick={() => fetchStories(first_link) } /> }
-										{previous_link && <Pagination.Prev onClick={() => fetchStories(previous_link) } /> }
-										{next_link && <Pagination.Next onClick={() => fetchStories(next_link) } /> }
-										{last_link && <Pagination.Last onClick={() => fetchStories(last_link) } /> }
-									</Pagination>
-								</Col>
-							</Row>
 						</Container>
 					</Navbar>
+				</Col>
+			</Row>
+			<Row>
+				<Col>
+					<Pagination className="pb-0">
+						{first_link && <Pagination.First onClick={() => fetchStories(first_link) } /> }
+						{previous_link && <Pagination.Prev onClick={() => fetchStories(previous_link) } /> }
+						{next_link && <Pagination.Next onClick={() => fetchStories(next_link) } /> }
+						{last_link && <Pagination.Last onClick={() => fetchStories(last_link) } /> }
+					</Pagination>
 				</Col>
 			</Row>
 			<Row>
