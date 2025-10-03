@@ -102,7 +102,12 @@ export default function Home({
 											<span style={{display: "none"}}>Sign in</span>
 										</div>
 									</Button>
-								</NavLink> : ""}
+								</NavLink> : 
+								<DropdownButton id="dropdown-button" title="Join In" variant="primary">
+									<Dropdown.Item href="/write">Write</Dropdown.Item>
+									<Dropdown.Item href="/my_stories">My Stories</Dropdown.Item>
+								</DropdownButton>
+							}
 							</Nav>
 						</Container>
 					</Navbar>
@@ -130,14 +135,6 @@ export default function Home({
 									<Col>
 										<NavLink to="/about" end><Button>About</Button></NavLink>
 										<Button onClick={() => navigate(".", { replace: true })} className="ms-1">Read Another Story</Button>
-									</Col>
-									<Col>
-										{user_name !== undefined ?
-										<DropdownButton id="dropdown-button" title="Join In" variant="primary">
-											<Dropdown.Item href="/write">Write</Dropdown.Item>
-											<Dropdown.Item href="/my_stories">My Stories</Dropdown.Item>
-										</DropdownButton>
-										: "" }
 									</Col>
 									<Col className="text-muted mt-2 text-end">
 										{submitted_message}
