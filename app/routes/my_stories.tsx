@@ -95,20 +95,26 @@ export default function MyStories({
 				<Col>
 					<Navbar>
 						<Container fluid className="ms-0">
-							<Navbar.Brand>
-								{user_name !== undefined ?
-								<small className="mb-40">Welcome {user_name}</small>
-								: ""}
-								<h1 className="parisienne-regular mt-2">Be part of the story</h1>
-							</Navbar.Brand>
-							<Nav>
-								<Pagination className="pb-0">
-									{first_link && <Pagination.First onClick={() => fetchStories(first_link) } /> }
-									{previous_link && <Pagination.Prev onClick={() => fetchStories(previous_link) } /> }
-									{next_link && <Pagination.Next onClick={() => fetchStories(next_link) } /> }
-									{last_link && <Pagination.Last onClick={() => fetchStories(last_link) } /> }
-								</Pagination>
-							</Nav>
+							<Row>
+								<Col>
+									<Navbar.Brand>
+										{user_name !== undefined ?
+										<small className="mb-40">Welcome {user_name}</small>
+										: ""}
+										<h1 className="parisienne-regular mt-2">Be part of the story</h1>
+									</Navbar.Brand>
+								</Col>
+							</Row>
+							<Row>
+								<Col>
+									<Pagination className="pb-0">
+										{first_link && <Pagination.First onClick={() => fetchStories(first_link) } /> }
+										{previous_link && <Pagination.Prev onClick={() => fetchStories(previous_link) } /> }
+										{next_link && <Pagination.Next onClick={() => fetchStories(next_link) } /> }
+										{last_link && <Pagination.Last onClick={() => fetchStories(last_link) } /> }
+									</Pagination>
+								</Col>
+							</Row>
 						</Container>
 					</Navbar>
 				</Col>
