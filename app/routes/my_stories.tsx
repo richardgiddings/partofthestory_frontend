@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card';
 import Accordion from 'react-bootstrap/Accordion';
@@ -100,6 +101,14 @@ export default function MyStories({
 								: ""}
 								<h1 className="parisienne-regular mt-2">Be part of the story</h1>
 							</Navbar.Brand>
+							<Nav>
+								<Pagination className="pb-0">
+									{first_link && <Pagination.First onClick={() => fetchStories(first_link) } /> }
+									{previous_link && <Pagination.Prev onClick={() => fetchStories(previous_link) } /> }
+									{next_link && <Pagination.Next onClick={() => fetchStories(next_link) } /> }
+									{last_link && <Pagination.Last onClick={() => fetchStories(last_link) } /> }
+								</Pagination>
+							</Nav>
 						</Container>
 					</Navbar>
 				</Col>
@@ -135,14 +144,6 @@ export default function MyStories({
 									<Col>
 										<NavLink to="/index.html" end><Button>Home</Button></NavLink>
 									</Col>
-									<Col md="auto">
-										<Pagination className="pb-0">
-											{first_link && <Pagination.First onClick={() => fetchStories(first_link) } /> }
-											{previous_link && <Pagination.Prev onClick={() => fetchStories(previous_link) } /> }
-											{next_link && <Pagination.Next onClick={() => fetchStories(next_link) } /> }
-											{last_link && <Pagination.Last onClick={() => fetchStories(last_link) } /> }
-										</Pagination>
-									</Col>
 								</Row>					
 							</Container>
 						</Card.Footer>
@@ -153,7 +154,7 @@ export default function MyStories({
 							You haven't told any stories yet. Why not start today?
 						</Card.Body>
 						<Card.Footer>
-							<Container className="pb-0" fluid>
+							<Container fluid>
 								<Row>
 									<Col>
 										<NavLink to="/index.html" end><Button>Home</Button></NavLink>
