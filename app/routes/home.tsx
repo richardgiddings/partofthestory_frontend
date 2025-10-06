@@ -79,7 +79,7 @@ export default function Home({
 						<Container fluid className="ms-0">
 							<Navbar.Brand>
 								{user_name !== undefined ?
-								<small className="mb-40">Welcome {user_name}</small>
+								<small className="mb-40">{user_name}</small>
 								: ""}
 								<h1 className="parisienne-regular mt-2">Be part of the story</h1>
 							</Navbar.Brand>
