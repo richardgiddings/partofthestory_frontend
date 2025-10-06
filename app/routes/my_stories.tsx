@@ -154,13 +154,7 @@ export default function MyStories({
 							You haven't told any stories yet. Why not start today?
 						</Card.Body>
 						<Card.Footer>
-							<Container fluid>
-								<Row>
-									<Col>
-										<NavLink to="/" end><Button>Home</Button></NavLink>
-									</Col>
-								</Row>					
-							</Container>
+							<NavLink to="/" end><Button>Home</Button></NavLink>
 						</Card.Footer>
 					</Card>
 					}
