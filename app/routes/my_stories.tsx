@@ -139,13 +139,7 @@ export default function MyStories({
 							</Pagination>	
 						</Card.Body>
 						<Card.Footer>
-							<Container className="pb-0" fluid>
-								<Row>
-									<Col>
-										<NavLink to="/" end><Button>Home</Button></NavLink>
-									</Col>
-								</Row>					
-							</Container>
+							<NavLink to="/" end><Button>Home</Button></NavLink>
 						</Card.Footer>
 					</Card>
 					:
