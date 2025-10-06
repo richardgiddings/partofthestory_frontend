@@ -230,7 +230,7 @@ export default function Write({
 						</Card.Body>
 						<Card.Footer>
 							<NavLink to="/" end><Button className="me-1">Home</Button></NavLink>
-							<NavLink to="my_stories" end><Button className="ms-1">My Stories</Button></NavLink>				
+							<NavLink to="/my_stories" end><Button className="ms-1">My Stories</Button></NavLink>				
 						</Card.Footer>
 					</Card>
 				</Col>
