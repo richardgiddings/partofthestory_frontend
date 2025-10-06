@@ -87,7 +87,7 @@ export default function About({
 							<p>We try to stop bad words from appearing on the website, but no system is perfect. If you think that a word has been unfairly identified stopping you from submitting your part of a story or you think that a story or part of a story should not be shown on the site <a href={`mailto:${typeof contact_email === "string" ? contact_email : ""}`}>get in touch</a>.</p>
 						</Card.Body>
                         <Card.Footer>
-                            <NavLink to="/index.html" end><Button className="me-1">Home</Button></NavLink>			
+                            <NavLink to="/" end><Button className="me-1">Home</Button></NavLink>			
                         </Card.Footer>
 					</Card>
 				</Col>

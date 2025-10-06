@@ -104,8 +104,8 @@ export default function Home({
 									</Button>
 								</NavLink> : 
 								<DropdownButton id="dropdown-button" title="Join In" variant="primary">
-									<Dropdown.Item href="/write">Write</Dropdown.Item>
-									<Dropdown.Item href="/my_stories">My Stories</Dropdown.Item>
+									<Dropdown.Item href="write">Write</Dropdown.Item>
+									<Dropdown.Item href="my_stories">My Stories</Dropdown.Item>
 								</DropdownButton>
 							}
 							</Nav>

@@ -38,7 +38,7 @@ export async function clientLoader() {
     }
 
 	if (user_status.detail && user_status.detail == "Session expired. Please login again.") {
-		throw redirect("/index.html");
+		throw redirect("/");
 	}
 
 	const part = await fetch(api_url+"/get_part/", {credentials: "include"}).then(res => res.json())
@@ -229,8 +229,8 @@ export default function Write({
 							</Card.Text>
 						</Card.Body>
 						<Card.Footer>
-							<NavLink to="/index.html" end><Button className="me-1">Home</Button></NavLink>
-							<NavLink to="/my_stories" end><Button className="ms-1">My Stories</Button></NavLink>				
+							<NavLink to="/" end><Button className="me-1">Home</Button></NavLink>
+							<NavLink to="my_stories" end><Button className="ms-1">My Stories</Button></NavLink>				
 						</Card.Footer>
 					</Card>
 				</Col>

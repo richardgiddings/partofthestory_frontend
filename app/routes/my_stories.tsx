@@ -31,7 +31,7 @@ export async function clientLoader() {
 	const user = await fetch(api_url+"/home/", {credentials: "include"}).then((res) => res.json())
 
 	if (user.detail && user.detail == "Session expired. Please login again.") {
-		return redirect("/index.html");
+		return redirect("/");
 	}
 
 	return {api_url, user};
@@ -85,7 +85,7 @@ export default function MyStories({
 
 
 	useEffect(() => {
-		fetchStories('/my_stories');
+		fetchStories('my_stories');
 	}, []);
 
 
@@ -142,7 +142,7 @@ export default function MyStories({
 							<Container className="pb-0" fluid>
 								<Row>
 									<Col>
-										<NavLink to="/index.html" end><Button>Home</Button></NavLink>
+										<NavLink to="/" end><Button>Home</Button></NavLink>
 									</Col>
 								</Row>					
 							</Container>
@@ -157,7 +157,7 @@ export default function MyStories({
 							<Container fluid>
 								<Row>
 									<Col>
-										<NavLink to="/index.html" end><Button>Home</Button></NavLink>
+										<NavLink to="/" end><Button>Home</Button></NavLink>
 									</Col>
 								</Row>					
 							</Container>
