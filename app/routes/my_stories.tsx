@@ -85,7 +85,7 @@ export default function MyStories({
 
 
 	useEffect(() => {
-		fetchStories('my_stories');
+		fetchStories('/my_stories');
 	}, []);
 
 
