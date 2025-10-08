@@ -32,3 +32,10 @@ Create a production build:
 ```bash
 npm run build
 ```
+
+## Environment variables
+
+We need an environment variable (in an .env file or the like) VITE_APP_URL for the backend url, with port if required.
+
+e.g. 
+VITE_APP_URL=http://127.0.0.1:8000
