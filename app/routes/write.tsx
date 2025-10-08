@@ -119,7 +119,7 @@ export async function clientAction({
 								}).then((res) => res.json())
 		
 		if (result.status >= 200 && result.status <= 299) {
-			return redirect("/index.html?submit=1");
+			return redirect("/?submit=1");
 		}
 
 		if(result.results.length > 0) {
