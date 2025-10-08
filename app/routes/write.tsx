@@ -146,7 +146,7 @@ export default function Write({
 	const {api_url, part, prev_part_text, user_status, message} = loaderData;
 
 	if(!user_status) {
-		throw redirect("/index.html");
+		throw redirect("/");
 	}
 	const user_name = user_status?.user?.user_name;
 
