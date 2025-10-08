@@ -145,7 +145,7 @@ export default function MyStories({
 					:
 					<Card bg="light" text="dark">
 						<Card.Body>
-							You haven't told any stories yet. Why not start today?
+							This is where completed stories that you have contributed to will appear.
 						</Card.Body>
 						<Card.Footer>
 							<NavLink to="/" end><Button>Home</Button></NavLink>
