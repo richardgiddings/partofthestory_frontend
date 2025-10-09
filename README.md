@@ -39,3 +39,5 @@ We need an environment variable (in an .env file or the like) VITE_APP_URL for t
 
 e.g. 
 VITE_APP_URL=http://127.0.0.1:8000
+
+To email support from the About page we need an environment variable VITE_APP_EMAIL with the email address.
