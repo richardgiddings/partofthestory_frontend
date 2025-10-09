@@ -111,7 +111,7 @@ export default function MyStories({
 					<Card bg="light" text="dark">	
 						<Card.Body>
 							<Card.Title className="pb-2">
-								<small>You have contributed to {number_of_stories} stories (your parts are in <b>bold</b>)</small>
+								<small>You have contributed to {number_of_stories} {number_of_stories > 1 ? "stories" : "story"} (your parts are in <b>bold</b>)</small>
 							</Card.Title>
 							<Accordion defaultActiveKey="0">
 							{stories?.map((story: any) => (
