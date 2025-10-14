@@ -27,10 +27,18 @@ export function meta({}: Route.MetaArgs) {
 export async function clientLoader() {
 
 	const api_url = import.meta.env.VITE_APP_URL;
+	let user = null;
 
-	const user = await fetch(api_url+"/home/", {credentials: "include"}).then((res) => res.json())
+	try {
+		const response = await fetch(api_url+"/home/", {credentials: "include"});
 
-	if (user.detail && user.detail == "Session expired. Please login again.") {
+		if (!response.ok) {
+			return redirect("/");
+		}
+		user = await response.json();
+	}
+	catch(error) {
+		console.log('There was an error', error);
 		return redirect("/");
 	}
 
@@ -61,25 +69,27 @@ export default function MyStories({
 	const fetchStories = async (pagination: any) => {
 
 		try {
-			const user = await fetch(api_url+"/home/", {credentials: "include"}).then((res) => res.json())
-			if (user.detail && user.detail == "Session expired. Please login again.") {
+			const response = await fetch(api_url+pagination, {credentials: "include"})
+
+			if (!response.ok) {
 				navigate("/");
-				return false;
+				return;
 			}
+			const stories = await response.json();
 
-			const res = await fetch(api_url+pagination, {credentials: "include"}).then((res) => res.json())
-
-			setStories(res.items);
+			setStories(stories.items);
 
 			// set pagination links
-			setFirstLink(res.links.first);
-			setLastLink(res.links.last);
-			setPreviousLink(res.links.prev);
-			setNextLink(res.links.next);
-			setNumberOfStories(res.total);
+			setFirstLink(stories.links.first);
+			setLastLink(stories.links.last);
+			setPreviousLink(stories.links.prev);
+			setNextLink(stories.links.next);
+			setNumberOfStories(stories.total);
 		}
-		catch(err) {
-			console.log(err);
+		catch(error) {
+			console.log('There was an error', error);
+			navigate("/");
+			return;
 		}
 	}
 
