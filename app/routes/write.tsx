@@ -30,28 +30,32 @@ export async function clientLoader() {
 	const api_url = import.meta.env.VITE_APP_URL;
 
     let user_status = null;
+	let part = null
+	let message = "";
+    let prev_part_text = "";
+
     try {
-    	user_status = await fetch(api_url+"/home/", {credentials: "include"}).then(res => res.json())
-    }
-    catch(err) {
-		console.log(err)
-    }
+    	const user_response = await fetch(api_url+"/home/", {credentials: "include"})
+		if (!user_response.ok) {
+			return redirect("/");
+		}
+		user_status = await user_response.json();
 
-	if (user_status.detail && user_status.detail == "Session expired. Please login again.") {
-		throw redirect("/");
+		const part_response = await fetch(api_url+"/get_part/", {credentials: "include"})
+		part = await part_response.json();
+
+		if(part.part_number > 1) {
+			const prev_part_response = await fetch(api_url+"/get_previous_part/", {credentials: "include"})
+			const prev_part = await prev_part_response.json();
+			prev_part_text = prev_part.part_text.substr(prev_part.part_text.length - 200)
+		} 
+		else {
+			message = "Hey, you get to think of a title too!"
+		}
 	}
-
-	const part = await fetch(api_url+"/get_part/", {credentials: "include"}).then(res => res.json())
-
-	var message = ""
-    var prev_part_text = ""
-    if(part.part_number > 1) {
-        const prev_part = await fetch(api_url+"/get_previous_part/", {credentials: "include"}).then(res => res.json())
-        prev_part_text = prev_part.part_text.substr(prev_part.part_text.length - 200)
-    } 
-	else {
-		message = "Hey, you get to think of a title too!"
-	}
+    catch(error) {
+		console.log('There was an error', error);
+    }
 
   	return {api_url, part, prev_part_text, user_status, message};
 }
@@ -71,7 +75,7 @@ export async function clientAction({
 
 	if(action == "save"){
 		try {
-			const result = await fetch(`${api_url}/save_part/${part_id}`, {
+			const save_response = await fetch(`${api_url}/save_part/${part_id}`, {
 									method: "PATCH",
 									headers: { 
 										"Content-Type": "application/json"
@@ -83,10 +87,44 @@ export async function clientAction({
 											part_text: part_text
 										}
 									)
-								}).then((res) => res.json())
-
+								})
+			const result = await save_response.json();
 			if (result.status >= 200 && result.status <= 299) {
-				return "Story Saved."
+				return "Story Saved.";
+			}
+
+			if(result.results.length > 0) {
+				let bad_words = "";
+				for (let i = 0; i < result.results.length; i++) {
+					bad_words = bad_words + result.results[i].word + " "
+				}
+				return "Story wasn't saved due to these words: " + bad_words;
+			}
+
+			return "Something went wrong."
+		}
+		catch(error) {
+			console.log('There was an error', error);
+		}
+	}
+	else if (action == "submit") {
+		try {
+			const submit_response = await fetch(`${api_url}/complete_part/${part_id}`, {
+										method: "PATCH",
+										headers: { 
+											"Content-Type": "application/json"
+										},
+										credentials: "include",
+										body: JSON.stringify(
+											{
+												story_title: story_title,
+												part_text: part_text
+											}
+										)
+									})
+			const result = await submit_response.json();
+			if (result.status >= 200 && result.status <= 299) {
+				return redirect("/?submit=1");
 			}
 
 			if(result.results.length > 0) {
@@ -96,41 +134,12 @@ export async function clientAction({
 				}
 				return "Story wasn't saved due to these words: " + bad_words
 			}
-
-			return "Something went wrong."
+			
+			return "Something went wrong..."
 		}
-		catch(err) {
-			console.log(err)
+		catch(error) {
+			console.log('There was an error', error);
 		}
-	}
-	else if (action == "submit") {
-		const result = await fetch(`${api_url}/complete_part/${part_id}`, {
-									method: "PATCH",
-									headers: { 
-										"Content-Type": "application/json"
-									},
-									credentials: "include",
-									body: JSON.stringify(
-										{
-											story_title: story_title,
-											part_text: part_text
-										}
-									)
-								}).then((res) => res.json())
-		
-		if (result.status >= 200 && result.status <= 299) {
-			return redirect("/?submit=1");
-		}
-
-		if(result.results.length > 0) {
-			let bad_words = ""
-			for (let i = 0; i < result.results.length; i++) {
-				bad_words = bad_words + result.results[i].word + " "
-			}
-			return "Story wasn't saved due to these words: " + bad_words
-		}
-		
-		return "Something went wrong..."
 	}
 	else {
 		return "Invalid action: " + action
