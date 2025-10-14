@@ -23,14 +23,8 @@ export async function clientLoader() {
 
 	const api_url = import.meta.env.VITE_APP_URL;
 
-	let user_status = null;
-
-	try {
-		user_status = await fetch(api_url+"/home/", {credentials: "include"}).then(res => res.json())
-	}
-	catch(err) {
-		user_status = undefined
-	}
+	const response = await fetch(api_url+"/home/", {credentials: "include"})
+	const user_status = await response.json();
 
   	return user_status;
 }
