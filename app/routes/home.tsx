@@ -29,20 +29,22 @@ export async function clientLoader({
 
 	const api_url = import.meta.env.VITE_APP_URL;
 
-	let story = null
-	try {
-		story = await fetch(api_url+"/random_complete_story/").then(res => res.json())
-	}
-	catch(err) {
-		story = undefined
-	}
-
+	let story = null;
 	let user_status = null;
 	try {
-		user_status = await fetch(api_url+"/home/", {credentials: "include"}).then(res => res.json())
+		const story_response = await fetch(api_url+"/random_complete_story/")
+		if (!story_response.ok) {
+			throw new Error(`Response status: ${story_response.status}`);
+		}
+		story = await story_response.json();
+
+		const user_response = await fetch(api_url+"/home/", {credentials: "include"})
+		if (user_response.ok) {
+			user_status = await user_response.json();
+		}
 	}
-	catch(err) {
-		user_status = undefined // so we can still return the story
+	catch(error) {
+		console.log('There was an error', error);
 	}
 
 	const [,searchParams] = request.url.split("?");
@@ -67,9 +69,6 @@ export default function Home({
 	}
 
 	const user_name = user_status?.user?.user_name;
-	//const formatted_date = 
-	//	new Date(story?.date_complete).toLocaleDateString(
-	//		"en-GB", { year: "numeric", month: "long", day: "numeric"});
 
   	return (
 		<Container fluid>
