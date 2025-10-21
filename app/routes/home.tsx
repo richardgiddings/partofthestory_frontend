@@ -38,7 +38,7 @@ export async function clientLoader({
 		}
 		story = await story_response.json();
 
-		const user_response = await fetch(api_url+"/home/", {credentials: "include"})
+		const user_response = await fetch(api_url+"/user/", {credentials: "include"})
 		if (user_response.ok) {
 			user_status = await user_response.json();
 		}

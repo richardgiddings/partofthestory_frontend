@@ -30,7 +30,7 @@ export async function clientLoader() {
 	let user = null;
 
 	try {
-		const response = await fetch(api_url+"/home/", {credentials: "include"});
+		const response = await fetch(api_url+"/user/", {credentials: "include"});
 
 		if (!response.ok) {
 			return redirect("/");

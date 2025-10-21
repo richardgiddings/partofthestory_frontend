@@ -35,7 +35,7 @@ export async function clientLoader() {
     let prev_part_text = "";
 
     try {
-    	const user_response = await fetch(api_url+"/home/", {credentials: "include"})
+    	const user_response = await fetch(api_url+"/user/", {credentials: "include"})
 		if (!user_response.ok) {
 			return redirect("/");
 		}
