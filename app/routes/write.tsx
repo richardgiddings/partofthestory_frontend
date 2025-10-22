@@ -16,6 +16,11 @@ import FormControl from 'react-bootstrap/FormControl';
 import FormText from 'react-bootstrap/FormText';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// JS Tour
+import introJs from 'intro.js';
+import 'intro.js/introjs.css';
+import 'intro.js/themes/introjs-modern.css';
+
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -180,7 +185,7 @@ export default function Write({
 				<Col>
 					<Card bg="light" text="dark">
 						<Card.Header>
-							<small className="text-muted">You are writing part {part_number} of 5.</small>
+							<small className="text-muted" data-intro="The part you will be writing." data-step="1">You are writing part {part_number} of 5.</small>
 						</Card.Header>
 						<Card.Body>
 							<Form method="post">
@@ -193,18 +198,19 @@ export default function Write({
 										minLength={2} 
 										maxLength={50} 
 										defaultValue={typeof part.story.title === "string" ? part.story.title : JSON.stringify(part.story.title)}
-										required />
+										required 
+										data-intro="The story title." data-step="2" />
 									<FormText className="text-muted">
 									{message}
 									</FormText>
 								</FormGroup> 
-								: <h3 className="archivo-black-regular">{part_number > 1 ? (typeof part.story.title === "string" ? part.story.title : JSON.stringify(part.story.title)) : ""}</h3>}
+								: <h3 className="archivo-black-regular" data-intro="The story title." data-step="2">{part_number > 1 ? (typeof part.story.title === "string" ? part.story.title : JSON.stringify(part.story.title)) : ""}</h3>}
 								<FormGroup className="mb-3" controlId="formPartText">
 									<FormLabel>
 										{part_number > 1 ? 
 										<div>
 										<b>The end of the previous part was: </b>
-										<p className="wrap_text">{typeof prev_part_text === "string" ? prev_part_text : JSON.stringify(prev_part_text)}</p>
+										<p className="wrap_text" data-intro="The end of the previous part to help you continue the story." data-step="3">{typeof prev_part_text === "string" ? prev_part_text : JSON.stringify(prev_part_text)}</p>
 										<b>Continue the story with your part here:</b>
 										</div>
 										:
@@ -221,14 +227,15 @@ export default function Write({
 										maxLength={1000} 
 										defaultValue={typeof part.part_text === "string" ? part.part_text : JSON.stringify(part.part_text)}
 										onChange={e => setCount(e.target.value.length)} 
-										required/>
+										required
+										data-intro="Write your part here." data-step="4" />
 									<FormText id="partTextHelpBlock" muted>Minimum of 50 characters and a maximum of 1000 characters. {count} used so far.</FormText>
 									<FormControl name="part_id" type="hidden" value={part.id} />
 									<FormControl name="api_url" type="hidden" value={api_url} />
 								</FormGroup>								
 								<ButtonGroup aria-label="Save and Submit buttons" className="right">
-									<Button name="action" value="save" type="submit">Save</Button>
-									<Button name="action" value="submit" type="submit">Submit</Button>
+									<Button name="action" value="save" type="submit" data-intro="Save if you just want to come back to it later." data-step="5">Save</Button>
+									<Button name="action" value="submit" type="submit" data-intro="Submit your part when you are finished." data-step="6">Submit</Button>
 								</ButtonGroup>
 							</Form>
 						</Card.Body>
@@ -239,7 +246,12 @@ export default function Write({
 						</Card.Body>
 						<Card.Footer>
 							<NavLink to="/" end><Button className="me-1">Home</Button></NavLink>
-							<NavLink to="/my_stories" end><Button className="ms-1">My Stories</Button></NavLink>				
+							<NavLink to="/my_stories" end><Button className="ms-1">My Stories</Button></NavLink>
+							<Button onClick={() => introJs.tour().start() } className="ms-2">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-info-circle-fill" viewBox="0 0 16 16">
+									<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+								</svg>
+							</Button>			
 						</Card.Footer>
 					</Card>
 				</Col>
