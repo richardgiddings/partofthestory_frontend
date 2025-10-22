@@ -15,6 +15,11 @@ import Accordion from 'react-bootstrap/Accordion';
 import Pagination from 'react-bootstrap/Pagination';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// JS Tour
+import introJs from 'intro.js';
+import 'intro.js/introjs.css';
+import 'intro.js/themes/introjs-modern.css';
+
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -123,7 +128,7 @@ export default function MyStories({
 							<Card.Title className="pb-2">
 								<small>You have contributed to {number_of_stories} {number_of_stories > 1 ? "stories" : "story"} (your parts are in <b>bold</b>)</small>
 							</Card.Title>
-							<Accordion defaultActiveKey="0">
+							<Accordion defaultActiveKey="0" data-intro="Where the completed stories you have contributed to appear." data-step="1">
 							{stories?.map((story: any) => (
 								<Accordion.Item eventKey={story.id} key={story.id}>
 									<Accordion.Header className="archivo-black-regular">{typeof story.title === "string" ? story.title : JSON.stringify(story.title)}</Accordion.Header>
@@ -141,7 +146,7 @@ export default function MyStories({
 								</Accordion.Item>
 							))}
 							</Accordion>
-							<Pagination className="pt-4 mb-0">
+							<Pagination className="pt-4 mb-0" data-intro="Only a certain number of stories are shown at once. Use these buttons to see more." data-step="2">
 								{first_link && <Pagination.First onClick={() => fetchStories(first_link) } /> }
 								{previous_link && <Pagination.Prev onClick={() => fetchStories(previous_link) } /> }
 								{next_link && <Pagination.Next onClick={() => fetchStories(next_link) } /> }
@@ -150,15 +155,25 @@ export default function MyStories({
 						</Card.Body>
 						<Card.Footer>
 							<NavLink to="/" end><Button>Home</Button></NavLink>
+							<Button onClick={() => introJs.tour().start() } className="ms-1">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-info-circle-fill" viewBox="0 0 16 16">
+									<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+								</svg>
+							</Button>
 						</Card.Footer>
 					</Card>
 					:
 					<Card bg="light" text="dark">
-						<Card.Body>
+						<Card.Body data-intro="Where the completed stories you have contributed to appear." data-step="1">
 							This is where completed stories that you have contributed to will appear.
 						</Card.Body>
 						<Card.Footer>
 							<NavLink to="/" end><Button>Home</Button></NavLink>
+							<Button onClick={() => introJs.tour().start() } className="ms-1">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-info-circle-fill" viewBox="0 0 16 16">
+									<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+								</svg>
+							</Button>
 						</Card.Footer>
 					</Card>
 					}
