@@ -14,6 +14,10 @@ import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import introJs from 'intro.js';
+import 'intro.js/introjs.css';
+import 'intro.js/themes/introjs-modern.css';
+
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -85,7 +89,7 @@ export default function Home({
 							<Nav>
 								{user_name == undefined ?
 								<NavLink to={login_link} end>
-									<Button className="gsi-material-button">
+									<Button className="gsi-material-button" data-intro="Use your Google credentials to join in and start writing stories!" data-step="1">
 										<div className="gsi-material-button-state"></div>
 										<div className="gsi-material-button-content-wrapper">
 											<div className="gsi-material-button-icon">
@@ -102,7 +106,7 @@ export default function Home({
 										</div>
 									</Button>
 								</NavLink> : 
-								<DropdownButton id="dropdown-button" title="Join In" variant="primary">
+								<DropdownButton id="dropdown-button" title="Join In" variant="primary" data-intro="Write a part to a story or see your stories" data-step="1">
 									<Dropdown.Item href="write">Write</Dropdown.Item>
 									<Dropdown.Item href="my_stories">My Stories</Dropdown.Item>
 								</DropdownButton>
@@ -119,7 +123,7 @@ export default function Home({
 						<Card.Body>
 							No stories yet. Why not start one?
 						</Card.Body> :
-						<Card.Body>
+						<Card.Body data-intro="Here you can see a random completed story" data-step="3">
 							<Card.Title className="archivo-black-regular mb-3">
 								<h4>{typeof story?.title === "string" ? story.title : JSON.stringify(story?.title)}</h4>
 							</Card.Title>
@@ -132,8 +136,13 @@ export default function Home({
 							<Container fluid className="p-0">
 								<Row>
 									<Col md="auto">
-										<NavLink to="/about" end><Button>About</Button></NavLink>
-										<Button onClick={() => navigate(".", { replace: true })} className="ms-1">Get Random Story</Button>
+										<NavLink to="/about" end><Button data-intro="Find out more and how we use your data" data-step="4">About</Button></NavLink>
+										<Button onClick={() => navigate(".", { replace: true })} className="ms-1" data-intro="Get a random completed story" data-step="2">Get Random Story</Button>
+										<Button onClick={() => introJs.tour().start() } className="ms-1">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-info-circle-fill" viewBox="0 0 16 16">
+  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+</svg>
+										</Button>
 									</Col>
 								</Row>
 								<Row>
