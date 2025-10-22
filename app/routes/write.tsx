@@ -267,7 +267,7 @@ export default function Write({
 									</Button>
 								</NavLink>
 							</OverlayTrigger>
-							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-my-stories">Go to my complete stories</Tooltip>}>
+							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-my-stories">Go to my completed stories</Tooltip>}>
 								<NavLink to="/my_stories" end><Button>My Stories</Button></NavLink>
 							</OverlayTrigger>
 						</Card.Footer>
