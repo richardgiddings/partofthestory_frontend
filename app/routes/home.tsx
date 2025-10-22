@@ -12,6 +12,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // JS Tour
@@ -137,13 +139,19 @@ export default function Home({
 							<Container fluid className="p-0">
 								<Row>
 									<Col md="auto">
-										<Button onClick={() => introJs.tour().start() } className="me-1">
-											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-info-circle-fill" viewBox="0 0 16 16">
-												<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
-											</svg>
-										</Button>
-										<NavLink to="/about" end><Button data-intro="Find out more and how we use your data." data-step="4">About</Button></NavLink>
-										<Button onClick={() => navigate(".", { replace: true })} className="ms-1" data-intro="Get a random completed story." data-step="2">Get Random Story</Button>
+										<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-tour">Page Tour</Tooltip>}>
+											<Button onClick={() => introJs.tour().start() } className="me-1">
+												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-info-circle-fill" viewBox="0 0 16 16">
+													<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+												</svg>
+											</Button>
+										</OverlayTrigger>
+										<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-about">About the website</Tooltip>}>
+											<NavLink to="/about" end><Button data-intro="Find out more and how we use your data." data-step="4">About</Button></NavLink>
+										</OverlayTrigger>
+										<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-get-random-story">Get a random story</Tooltip>}>
+											<Button onClick={() => navigate(".", { replace: true })} className="ms-1" data-intro="Get a random completed story." data-step="2">Get Random Story</Button>
+										</OverlayTrigger>
 									</Col>
 								</Row>
 								<Row>
