@@ -115,7 +115,13 @@ export default function MyStories({
 								{user_name !== undefined ?
 								<small className="mb-40">{user_name}</small>
 								: ""}
-								<h1 className="parisienne-regular mt-2">Be part of the story</h1>
+								<h1 className="parisienne-regular mt-2">
+									<NavLink 
+										to="/" 
+										className="no_link_decoration">
+											Be part of the story
+									</NavLink>
+								</h1>
 							</Navbar.Brand>
 						</Container>
 					</Navbar>
