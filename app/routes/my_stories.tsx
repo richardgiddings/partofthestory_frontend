@@ -153,32 +153,32 @@ export default function MyStories({
 								</Accordion.Item>
 							))}
 							</Accordion>
-							<Pagination className="pt-4 mb-0" data-intro="Only a certain number of stories are shown at once. Use these buttons to see more." data-step="2">
+							<Pagination aria-label="Story pagination" className="pt-4 mb-0" data-intro="Only a certain number of stories are shown at once. Use these buttons to see more." data-step="2">
 								{first_link && 
 									<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-first">First page</Tooltip>}>
-										<Pagination.First onClick={() => fetchStories(first_link) } /> 
+										<Pagination.First aria-label="First page" onClick={() => fetchStories(first_link) } /> 
 									</OverlayTrigger>
 								}
 								{previous_link &&
 									<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-previous">Previous page</Tooltip>}> 
-										<Pagination.Prev onClick={() => fetchStories(previous_link) } />
+										<Pagination.Prev aria-label="Previous page" onClick={() => fetchStories(previous_link) } />
 									</OverlayTrigger> 
 								}
 								{next_link && 
 									<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-next">Next page</Tooltip>}> 
-										<Pagination.Next onClick={() => fetchStories(next_link) } />
+										<Pagination.Next aria-label="Next page" onClick={() => fetchStories(next_link) } />
 									</OverlayTrigger>  
 								}
 								{last_link && 
 									<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-last">Last page</Tooltip>}>
-										<Pagination.Last onClick={() => fetchStories(last_link) } /> 
+										<Pagination.Last aria-label="Last page" onClick={() => fetchStories(last_link) } /> 
 									</OverlayTrigger>	
 								}
 							</Pagination>	
 						</Card.Body>
 						<Card.Footer>
 							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-tour">Page Tour</Tooltip>}>
-								<Button onClick={() => introJs.tour().start() } className="me-1">
+								<Button aria-label="Page Tour" onClick={() => introJs.tour().start() } className="me-1">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-info-circle-fill" viewBox="0 0 16 16">
 										<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
 									</svg>
@@ -186,7 +186,7 @@ export default function MyStories({
 							</OverlayTrigger>
 							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-home">Go to home page</Tooltip>}>
 								<NavLink to="/" end>
-									<Button>
+									<Button aria-label="Home">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-house-door-fill" viewBox="0 0 16 16">
 											<path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
 										</svg>
@@ -202,7 +202,7 @@ export default function MyStories({
 						</Card.Body>
 						<Card.Footer>
 							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-tour">Page Tour</Tooltip>}>
-								<Button onClick={() => introJs.tour().start() } className="me-1">
+								<Button aria-label="Page Tour" onClick={() => introJs.tour().start() } className="me-1">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-info-circle-fill" viewBox="0 0 16 16">
 										<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
 									</svg>
@@ -210,7 +210,7 @@ export default function MyStories({
 							</OverlayTrigger>
 							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-home">Go to home page</Tooltip>}>
 								<NavLink to="/" end>
-									<Button>
+									<Button aria-label="Home">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-house-door-fill" viewBox="0 0 16 16">
 											<path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
 										</svg>

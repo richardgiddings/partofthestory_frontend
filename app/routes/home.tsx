@@ -92,7 +92,7 @@ export default function Home({
 							<Nav>
 								{user_name == undefined ?
 								<NavLink to={login_link} end>
-									<Button className="gsi-material-button" data-intro="Use your Google credentials to join in and start writing stories!" data-step="1">
+									<Button aria-label="Google login" className="gsi-material-button" data-intro="Use your Google credentials to join in and start writing stories!" data-step="1">
 										<div className="gsi-material-button-state"></div>
 										<div className="gsi-material-button-content-wrapper">
 											<div className="gsi-material-button-icon">
@@ -109,9 +109,9 @@ export default function Home({
 										</div>
 									</Button>
 								</NavLink> : 
-								<DropdownButton id="dropdown-button" title="Join In" variant="primary" data-intro="Write a part to a story or see your stories." data-step="1">
-									<Dropdown.Item href="write">Write</Dropdown.Item>
-									<Dropdown.Item href="my_stories">My Stories</Dropdown.Item>
+								<DropdownButton aria-label="Dropdown menu" id="dropdown-button" title="Join In" variant="primary" data-intro="Write a part to a story or see your stories." data-step="1">
+									<Dropdown.Item aria-label="Write" href="write">Write</Dropdown.Item>
+									<Dropdown.Item aria-label="My Stories" href="my_stories">My Stories</Dropdown.Item>
 								</DropdownButton>
 							}
 							</Nav>
@@ -140,17 +140,17 @@ export default function Home({
 								<Row>
 									<Col md="auto">
 										<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-tour">Page Tour</Tooltip>}>
-											<Button onClick={() => introJs.tour().start() } className="me-1">
+											<Button aria-label="Page Tour" onClick={() => introJs.tour().start() } className="me-1">
 												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-info-circle-fill" viewBox="0 0 16 16">
 													<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
 												</svg>
 											</Button>
 										</OverlayTrigger>
 										<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-about">About the website</Tooltip>}>
-											<NavLink to="/about" end><Button data-intro="Find out more and how we use your data." data-step="4">About</Button></NavLink>
+											<NavLink to="/about" end><Button aria-label="About" data-intro="Find out more and how we use your data." data-step="4">About</Button></NavLink>
 										</OverlayTrigger>
 										<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-get-random-story">Get a random story</Tooltip>}>
-											<Button onClick={() => navigate(".", { replace: true })} className="ms-1" data-intro="Get a random completed story." data-step="2">Get Random Story</Button>
+											<Button aria-label="Get a random story" onClick={() => navigate(".", { replace: true })} className="ms-1" data-intro="Get a random completed story." data-step="2">Get Random Story</Button>
 										</OverlayTrigger>
 									</Col>
 								</Row>
