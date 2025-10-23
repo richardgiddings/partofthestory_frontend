@@ -1,6 +1,7 @@
 import type { Route } from './+types/write';
 import { useState } from 'react';
 import { NavLink, redirect, Form } from 'react-router';
+import ReactRouterPrompt from 'react-router-prompt';
 
 // Bootstrap styling
 import Container from 'react-bootstrap/Container';
@@ -16,6 +17,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import FormText from 'react-bootstrap/FormText';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // JS Tour
@@ -169,6 +171,9 @@ export default function Write({
 	const [count, setCount] = useState(part?.part_text?.length);
 	const part_number = part.part_number;
 
+	// Have there been changes to the form?
+	const [isDirty, setIsDirty] = useState(false);
+
   	return (
 		<Container fluid>
 			<Row>
@@ -207,7 +212,10 @@ export default function Write({
 										maxLength={50} 
 										defaultValue={typeof part.story.title === "string" ? part.story.title : JSON.stringify(part.story.title)}
 										required 
-										data-intro="The story title." data-step="2" />
+										data-intro="The story title." data-step="2" 
+										onChange={
+											() => setIsDirty(true)
+										}/>
 									<FormText className="text-muted">
 									{message}
 									</FormText>
@@ -234,19 +242,45 @@ export default function Write({
 										minLength={50} 
 										maxLength={1000} 
 										defaultValue={typeof part.part_text === "string" ? part.part_text : JSON.stringify(part.part_text)}
-										onChange={e => setCount(e.target.value.length)} 
+										onChange={
+											e => {
+												setCount(e.target.value.length)
+												setIsDirty(true)
+											}
+										} 
 										required
 										data-intro="Write your part here." data-step="4" />
 									<FormText id="partTextHelpBlock" muted>Minimum of 50 characters and a maximum of 1000 characters. {count} used so far.</FormText>
 									<FormControl name="part_id" type="hidden" value={part.id} />
 									<FormControl name="api_url" type="hidden" value={api_url} />
+									<ReactRouterPrompt when={isDirty}>
+										{({ isActive, onConfirm, onCancel } : { isActive:any, onConfirm:any, onCancel:any }) => (
+											<Modal show={isActive}>
+												<Modal.Header>
+													<Modal.Title>Leave without saving?</Modal.Title>
+												</Modal.Header>
+												<Modal.Body>
+													<Button aria-label="No" variant="secondary" onClick={onCancel} className="me-1">No</Button>
+													<Button aria-label="Yes" onClick={onConfirm}>Yes</Button>
+												</Modal.Body>
+											</Modal>
+										)}
+									</ReactRouterPrompt>
 								</FormGroup>								
 								<ButtonGroup aria-label="Save and Submit buttons" className="right">
 									<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-save">Save the part</Tooltip>}>
-										<Button aria-label="Save" name="action" value="save" type="submit" data-intro="Save if you just want to come back to it later." data-step="5">Save</Button>
+										<Button 
+											aria-label="Save" 
+											name="action" value="save" type="submit" 
+											data-intro="Save if you just want to come back to it later." data-step="5" 
+											onClick={()=>{setIsDirty(false)}}>Save</Button>
 									</OverlayTrigger>
 									<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-submit">Submit the part</Tooltip>}>
-										<Button aria-label="Submit" name="action" value="submit" type="submit" data-intro="Submit your part when you are finished." data-step="6">Submit</Button>
+										<Button 
+											aria-label="Submit" 
+											name="action" value="submit" type="submit" 
+											data-intro="Submit your part when you are finished." data-step="6"
+											onClick={()=>{setIsDirty(false)}}>Submit</Button>
 									</OverlayTrigger>
 								</ButtonGroup>
 							</Form>
