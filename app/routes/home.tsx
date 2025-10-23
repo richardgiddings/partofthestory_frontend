@@ -128,7 +128,7 @@ export default function Home({
 						</Card.Body> :
 						<Card.Body data-intro="Here you can see a random completed story" data-step="3">
 							<Card.Title className="archivo-black-regular mb-3">
-								<h4>{typeof story?.title === "string" ? story.title : JSON.stringify(story?.title)}</h4>
+								<h2>{typeof story?.title === "string" ? story.title : JSON.stringify(story?.title)}</h2>
 							</Card.Title>
 							{story.parts?.sort((a: any,b: any) => (a.part_number > b.part_number) ? 1 : ((b.part_number > a.part_number) ? -1 : 0)).map((part: any) => (
 								<Card.Text key={part.id}>{typeof part.part_text === "string" ? part.part_text : JSON.stringify(part.part_text)}</Card.Text>

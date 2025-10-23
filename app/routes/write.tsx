@@ -212,7 +212,7 @@ export default function Write({
 									{message}
 									</FormText>
 								</FormGroup> 
-								: <h3 className="archivo-black-regular" data-intro="The story title." data-step="2">{part_number > 1 ? (typeof part.story.title === "string" ? part.story.title : JSON.stringify(part.story.title)) : ""}</h3>}
+								: <h2 className="archivo-black-regular" data-intro="The story title." data-step="2">{part_number > 1 ? (typeof part.story.title === "string" ? part.story.title : JSON.stringify(part.story.title)) : ""}</h2>}
 								<FormGroup className="mb-3" controlId="formPartText">
 									<FormLabel>
 										{part_number > 1 ? 
