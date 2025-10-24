@@ -14,6 +14,13 @@ body {
     float: right;
 }
 
+.button_text {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    margin-left: 5px;
+}
+
 /* 
     For when there are no word breaks
     In a long piece of text.
