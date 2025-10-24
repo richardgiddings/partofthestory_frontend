@@ -14,11 +14,6 @@ body {
     float: right;
 }
 
-.no_link_decoration {
-    text-decoration: none;
-    color: black;
-}
-
 /* 
     For when there are no word breaks
     In a long piece of text.
