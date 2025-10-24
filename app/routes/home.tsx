@@ -146,9 +146,6 @@ export default function Home({
 												</svg>
 											</Button>
 										</OverlayTrigger>
-										<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-about">About the website</Tooltip>}>
-											<NavLink to="/about" end><Button aria-label="About" data-intro="Find out more and how we use your data." data-step="4">About</Button></NavLink>
-										</OverlayTrigger>
 										<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-get-random-story">Get a random story</Tooltip>}>
 											<Button aria-label="Get a random story" onClick={() => navigate(".", { replace: true })} className="ms-1" data-intro="Get a random completed story." data-step="2">Get Random Story</Button>
 										</OverlayTrigger>
@@ -162,6 +159,13 @@ export default function Home({
 							</Container>
 						</Card.Footer>
 					</Card>
+				</Col>
+			</Row>
+			<Row>
+				<Col>
+					<Nav className="justify-content-end">
+						<Nav.Link href="/about" data-intro="Find out more and how we use your data." data-step="4">About the website</Nav.Link>
+					</Nav>
 				</Col>
 			</Row>
 		</Container>
