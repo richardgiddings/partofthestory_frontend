@@ -68,7 +68,7 @@ export default function About({
                             <h2>How does it work?</h2>
                             <p>If you are not logged in:</p>
                             <ul>
-                                <li>You can see a random story from the list of completed stories created by other users. <b>Get Random Story</b> gets you another</li>
+                                <li>You can see a random story from the list of completed stories created by other users. <b>Get Another Story</b> gets you another</li>
                                 <li>You can login using your Google ID to unlock the ability to contribute to stories</li>
                             </ul>
                             <p>Logging in to create stories:</p>
