@@ -77,6 +77,7 @@ export default function About({
                                 <li>When you select <b>Write</b> you are assigned a random unassigned part from a story. Write your part then either <b>Save</b> it to come back to it later or <b>Submit</b> it when you are finished</li>
                                 <li>Choose <b>My Stories</b> to see the completed stories you have contributed to. The part(s) you wrote will be highlighted</li>
                             </ul>
+							<p>To give stories the best chance of continuing, a part will be unassigned if it hasn't been completed in a few days.</p>
                             <h2>Data we collect</h2>
                             <p>The only information of yours we store is your Google user id, which is used to identify the stories you contributed to. A session cookie stores your Google login so you can use the parts of the site that need you to be logged in.</p>
 							<h2>Moderating the stories</h2>
