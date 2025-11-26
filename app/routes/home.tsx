@@ -55,9 +55,9 @@ export async function clientLoader({
 	}
 
 	const [,searchParams] = request.url.split("?");
-	const submitted = new URLSearchParams(searchParams).get("submit");
+	const message = new URLSearchParams(searchParams).get("message");
 
-  	return {api_url, story, user_status, submitted};
+  	return {api_url, story, user_status, message};
 }
 
 
@@ -66,14 +66,9 @@ export default function Home({
 }: Route.ComponentProps) {
 
 	const navigate = useNavigate();
-	const {api_url, story, user_status, submitted} = loaderData;
+	const {api_url, story, user_status, message} = loaderData;
 
 	const login_link = api_url + "/login/"
-
-	let submitted_message = ""
-	if(submitted) {
-		submitted_message = "Story part submitted."
-	}
 
 	const user_name = user_status?.user?.user_name;
 
@@ -160,7 +155,7 @@ export default function Home({
 								</Row>
 								<Row>
 									<Col className="text-muted mt-2 text-end">
-										{submitted_message}
+										{message}
 									</Col>
 								</Row>
 							</Container>

@@ -133,7 +133,7 @@ export async function clientAction({
 									})
 			const result = await submit_response.json();
 			if (result.status >= 200 && result.status <= 299) {
-				return redirect("/?submit=1");
+				return redirect("/?message=Story part submitted");
 			}
 
 			if(result.results.length > 0) {
