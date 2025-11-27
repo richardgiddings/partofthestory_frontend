@@ -82,7 +82,7 @@ export default function Home({
 								{user_name !== undefined ?
 								<small className="mb-40">{user_name}</small>
 								: ""}
-								<h1 className="parisienne-regular mt-2">Be part of the story</h1>
+								<h1 className="parisienne-regular mt-2 mb-0">Be part of the story</h1>
 							</Navbar.Brand>
 							<Nav>
 								{user_name == undefined ?
@@ -112,6 +112,13 @@ export default function Home({
 							</Nav>
 						</Container>
 					</Navbar>
+				</Col>
+			</Row>
+			<Row>
+				<Col>
+					<Nav>
+						<Nav.Link href="/about" data-intro="Find out more and how we use your data." data-step="4" className="pt-0">About the website</Nav.Link>
+					</Nav>
 				</Col>
 			</Row>
 			<Row>
@@ -161,13 +168,6 @@ export default function Home({
 							</Container>
 						</Card.Footer>
 					</Card>
-				</Col>
-			</Row>
-			<Row>
-				<Col>
-					<Nav className="justify-content-end">
-						<Nav.Link href="/about" data-intro="Find out more and how we use your data." data-step="4">About the website</Nav.Link>
-					</Nav>
 				</Col>
 			</Row>
 		</Container>
