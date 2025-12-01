@@ -243,6 +243,7 @@ export default function Write({
 											}
 										} 
 										required
+										placeholder="Write your part here. If there is a previous part have a look at what was written for ideas on how to start yours. Maybe include the title somehow in your part of the story."
 										data-intro="Write your part here." data-step="4" />
 									<FormText id="partTextHelpBlock" muted>Minimum of 50 characters and a maximum of 1000 characters. {count} used so far.</FormText>
 									<FormControl name="part_id" type="hidden" value={part.id} />
