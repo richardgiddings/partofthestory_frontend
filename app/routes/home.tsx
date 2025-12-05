@@ -151,7 +151,7 @@ export default function Home({
 						<Card.Footer className="text-muted">
 							<Container fluid className="p-0">
 								<Row>
-									<Col md="auto">
+									<Col className="d-grid mt-2">
 										<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-get-random-story">Get a random story</Tooltip>}>
 											<Button aria-label="Get a random story" onClick={() => navigate(".", { replace: true })} className="ms-1" data-intro="Get a random completed story." data-step="2">
 												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-clockwise" viewBox="0 0 16 16">
