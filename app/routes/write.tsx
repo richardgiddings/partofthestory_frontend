@@ -1,6 +1,6 @@
 import type { Route } from './+types/write';
 import { useState } from 'react';
-import { NavLink, redirect, Form } from 'react-router';
+import { redirect, Form } from 'react-router';
 import ReactRouterPrompt from 'react-router-prompt';
 
 // Bootstrap styling
@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card';
 import FormGroup from 'react-bootstrap/FormGroup';
@@ -99,7 +100,7 @@ export async function clientAction({
 								})
 			const result = await save_response.json();
 			if (result.status >= 200 && result.status <= 299) {
-				return "Story Saved.";
+				return "Story Saved";
 			}
 
 			if(result.results.length > 0) {
@@ -182,10 +183,29 @@ export default function Write({
 						<Container className="ms-0">
 							<Navbar.Brand href="/">
 								<small className="mb-40">{user_name}</small>
-								<h1 className="parisienne-regular mt-2">Be part of the story</h1>
+								<h1 className="parisienne-regular mt-2 mb-0">Be part of the story</h1>
 							</Navbar.Brand>
 						</Container>
 					</Navbar>
+				</Col>
+			</Row>
+			<Row>
+				<Col>
+					<Nav>
+						<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-home">Go to home page</Tooltip>}>
+							<Nav.Link href="/" className="pt-0">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-house-door-fill" viewBox="0 0 16 16">
+									<path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+								</svg>
+								<span className="button_text">Home</span>
+							</Nav.Link>
+						</OverlayTrigger>
+						<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-tour">What's on this page?</Tooltip>}>
+							<Nav.Link href="" onClick={() => introJs.tour().start() } className="pt-0">
+								<span className="button_text">Take a Tour</span>
+							</Nav.Link>
+						</OverlayTrigger>	
+					</Nav>
 				</Col>
 			</Row>
 			<Row>
@@ -280,30 +300,8 @@ export default function Write({
 								</ButtonGroup>
 							</Form>
 						</Card.Body>
-						<Card.Body>
-							<Card.Text className="right">
-								{actionData ? actionData : ""}
-							</Card.Text>
-						</Card.Body>
 						<Card.Footer>
-							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-tour">Page Tour</Tooltip>}>
-								<Button aria-label="Page Tour" onClick={() => introJs.tour().start() } className="me-1">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-info-circle-fill" viewBox="0 0 16 16">
-										<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
-									</svg>
-									<span className="button_text">Tour</span>
-								</Button>
-							</OverlayTrigger>
-							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-home">Go to home page</Tooltip>}>
-								<NavLink to="/" end>
-									<Button aria-label="Home" className="me-1">
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-house-door-fill" viewBox="0 0 16 16">
-											<path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
-										</svg>
-										<span className="button_text">Home</span>
-									</Button>
-								</NavLink>
-							</OverlayTrigger>
+							<span className="right">{actionData ? actionData : ""}</span>
 						</Card.Footer>
 					</Card>
 				</Col>

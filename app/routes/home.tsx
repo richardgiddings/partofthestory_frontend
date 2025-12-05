@@ -1,5 +1,5 @@
 import type { Route } from './+types/home';
-import { NavLink, useMatches } from 'react-router';
+import { NavLink } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 
 // Bootstrap styling
@@ -117,7 +117,12 @@ export default function Home({
 			<Row>
 				<Col>
 					<Nav>
-						<Nav.Link href="/about" data-intro="Find out more and how we use your data." data-step="4" className="pt-0">About the website</Nav.Link>
+						<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-getting-started">What is this website about?</Tooltip>}>
+							<Nav.Link href="/about" data-intro="Find out more and how we use your data." data-step="4" className="pt-0">Getting Started</Nav.Link>
+						</OverlayTrigger>
+						<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-tour">What's on this page?</Tooltip>}>
+							<Nav.Link href="" onClick={() => introJs.tour().start() } className="pt-0">Take a Tour</Nav.Link>
+						</OverlayTrigger>
 					</Nav>
 				</Col>
 			</Row>
@@ -141,14 +146,6 @@ export default function Home({
 							<Container fluid className="p-0">
 								<Row>
 									<Col md="auto">
-										<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-tour">Page Tour</Tooltip>}>
-											<Button aria-label="Page Tour" onClick={() => introJs.tour().start() } className="me-1">
-												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-info-circle-fill" viewBox="0 0 16 16">
-													<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
-												</svg>
-												<span className="button_text">Tour</span>
-											</Button>
-										</OverlayTrigger>
 										<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-get-random-story">Get a random story</Tooltip>}>
 											<Button aria-label="Get a random story" onClick={() => navigate(".", { replace: true })} className="ms-1" data-intro="Get a random completed story." data-step="2">
 												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-clockwise" viewBox="0 0 16 16">

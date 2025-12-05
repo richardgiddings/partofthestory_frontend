@@ -1,13 +1,12 @@
 import type { Route } from './+types/about';
-import { NavLink, Link } from 'react-router';
 
 // Bootstrap styling
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -50,10 +49,24 @@ export default function About({
 								{user_name !== undefined ?
 								<small className="mb-40">{user_name}</small>
 								: ""}
-								<h1 className="parisienne-regular mt-2">Be part of the story</h1>
+								<h1 className="parisienne-regular mt-2 mb-0">Be part of the story</h1>
 							</Navbar.Brand>
 						</Container>
 					</Navbar>
+				</Col>
+			</Row>
+			<Row>
+				<Col>
+					<Nav>
+						<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-home">Go to home page</Tooltip>}>
+							<Nav.Link href="/" className="pt-0">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-house-door-fill" viewBox="0 0 16 16">
+									<path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+								</svg>
+								<span className="button_text">Home</span>
+							</Nav.Link>
+						</OverlayTrigger>	
+					</Nav>
 				</Col>
 			</Row>
 			<Row>
@@ -83,18 +96,6 @@ export default function About({
 							<h2>Moderating the stories</h2>
 							<p>We try to stop bad words from appearing on the website, but no system is perfect. If you think that a word has been unfairly identified stopping you from submitting your part of a story or you think that a story or part of a story should not be shown on the site <a href={`mailto:${typeof contact_email === "string" ? contact_email : ""}`}>get in touch</a>.</p>
 						</Card.Body>
-                        <Card.Footer>
-							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-home">Go to home page</Tooltip>}>
-								<NavLink to="/" end>
-									<Button aria-label="Home" className="me-1">
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-house-door-fill" viewBox="0 0 16 16">
-											<path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
-										</svg>
-										<span className="button_text">Home</span>
-									</Button>
-								</NavLink>
-							</OverlayTrigger>			
-                        </Card.Footer>
 					</Card>
 				</Col>
 			</Row>
