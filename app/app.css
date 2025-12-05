@@ -21,6 +21,13 @@ body {
     margin-left: 5px;
 }
 
+.nav-link, .dropdown-item {
+    color: #0000EE !important;
+}
+.nav-link:hover, .dropdown-item:hover {
+    color: #4285F4 !important;
+}
+
 /* 
     For when there are no word breaks
     In a long piece of text.

@@ -108,36 +108,32 @@ export default function MyStories({
 	return (
 		<Container fluid>
 			<Row>
-				<Col>
-					<Navbar>
-						<Container fluid className="ms-0">
-							<Navbar.Brand href="/">
-								{user_name !== undefined ?
-								<small className="mb-40">{user_name}</small>
-								: ""}
-								<h1 className="parisienne-regular mt-2 mb-0">Be part of the story</h1>
-							</Navbar.Brand>
-						</Container>
-					</Navbar>
+				<Col className="ms-1 mt-3">
+					{user_name !== undefined ?
+					<span>{user_name}</span>
+					: ""}
+					<h1 className="parisienne-regular mt-2 mb-0">Be part of the story</h1>
 				</Col>
 			</Row>
 			<Row>
 				<Col>
-					<Nav>
-						<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-home">Go to home page</Tooltip>}>
-							<Nav.Link href="/" className="pt-0">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-house-door-fill" viewBox="0 0 16 16">
-									<path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
-								</svg>
-								<span className="button_text">Home</span>
-							</Nav.Link>
-						</OverlayTrigger>
-						<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-tour">What's on this page?</Tooltip>}>
-							<Nav.Link href="" onClick={() => introJs.tour().start() } className="pt-0">
-								<span className="button_text">Take a Tour</span>
-							</Nav.Link>
-						</OverlayTrigger>	
-					</Nav>
+					<Navbar>
+						<Nav>
+							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-home">Go to home page</Tooltip>}>
+								<Nav.Link href="/" className="pt-0">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-house-door-fill" viewBox="0 0 16 16">
+										<path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+									</svg>
+									<span className="button_text">Home</span>
+								</Nav.Link>
+							</OverlayTrigger>
+							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-tour">What's on this page?</Tooltip>}>
+								<Nav.Link href="" onClick={() => introJs.tour().start() } className="pt-0">
+									<span className="button_text">Take a Tour</span>
+								</Nav.Link>
+							</OverlayTrigger>	
+						</Nav>
+					</Navbar>
 				</Col>
 			</Row>
 			<Row>

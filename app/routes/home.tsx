@@ -8,8 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
@@ -75,55 +74,62 @@ export default function Home({
   	return (
 		<Container fluid>
 			<Row>
-				<Col>
-					<Navbar>
-						<Container fluid className="ms-0">
-							<Navbar.Brand>
-								{user_name !== undefined ?
-								<small className="mb-40">{user_name}</small>
-								: ""}
-								<h1 className="parisienne-regular mt-2 mb-0">Be part of the story</h1>
-							</Navbar.Brand>
-							<Nav>
-								{user_name == undefined ?
-								<NavLink to={login_link} end>
-									<Button aria-label="Google login" className="gsi-material-button" data-intro="Use your Google credentials to join in and start writing stories!" data-step="1">
-										<div className="gsi-material-button-state"></div>
-										<div className="gsi-material-button-content-wrapper">
-											<div className="gsi-material-button-icon">
-											<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" xmlnsXlink="http://www.w3.org/1999/xlink" style={{display: "block"}}>
-												<path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
-												<path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
-												<path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
-												<path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
-												<path fill="none" d="M0 0h48v48H0z"></path>
-											</svg>
-											</div>
-											<span className="gsi-material-button-contents">Sign in</span>
-											<span style={{display: "none"}}>Sign in</span>
-										</div>
-									</Button>
-								</NavLink> : 
-								<DropdownButton aria-label="Dropdown menu" id="dropdown-button" title="Join In" variant="primary" data-intro="Write a part to a story or see your stories." data-step="1">
-									<Dropdown.Item aria-label="Write" href="write">Write</Dropdown.Item>
-									<Dropdown.Item aria-label="My Stories" href="my_stories">My Stories</Dropdown.Item>
-								</DropdownButton>
-							}
-							</Nav>
-						</Container>
-					</Navbar>
+				<Col className="ms-1 mt-3">
+					{user_name !== undefined ?
+					<span>{user_name}</span>
+					: ""}
+					<h1 className="parisienne-regular mt-2 mb-0">Be part of the story</h1>
 				</Col>
 			</Row>
 			<Row>
 				<Col>
-					<Nav>
-						<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-getting-started">What is this website about?</Tooltip>}>
-							<Nav.Link href="/about" data-intro="Find out more and how we use your data." data-step="4" className="pt-0">Getting Started</Nav.Link>
-						</OverlayTrigger>
-						<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-tour">What's on this page?</Tooltip>}>
-							<Nav.Link href="" onClick={() => introJs.tour().start() } className="pt-0">Take a Tour</Nav.Link>
-						</OverlayTrigger>
-					</Nav>
+					<Navbar>
+						<Nav>
+							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-getting-started">What is this website about?</Tooltip>}>
+								<Nav.Link href="/about" data-intro="Find out more and how we use your data." data-step="4">
+									Getting Started
+								</Nav.Link>
+							</OverlayTrigger>
+						</Nav>
+						{user_name == undefined ?
+						<Nav className="me-auto">
+							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-tour">What's on this page?</Tooltip>}>
+								<Nav.Link href="" onClick={() => introJs.tour().start() }>Take a Tour</Nav.Link>
+							</OverlayTrigger>
+						</Nav> :
+						<Nav >
+							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-tour">What's on this page?</Tooltip>}>
+								<Nav.Link href="" onClick={() => introJs.tour().start() }>Take a Tour</Nav.Link>
+							</OverlayTrigger>
+						</Nav>
+						}
+						<Nav>
+							{user_name == undefined ?
+							<NavLink to={login_link} end>
+								<Button aria-label="Google login" className="gsi-material-button" data-intro="Use your Google credentials to join in and start writing stories!" data-step="1">
+									<div className="gsi-material-button-state"></div>
+									<div className="gsi-material-button-content-wrapper">
+										<div className="gsi-material-button-icon">
+										<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" xmlnsXlink="http://www.w3.org/1999/xlink" style={{display: "block"}}>
+											<path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+											<path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+											<path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+											<path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+											<path fill="none" d="M0 0h48v48H0z"></path>
+										</svg>
+										</div>
+										<span className="gsi-material-button-contents">Sign in</span>
+										<span style={{display: "none"}}>Sign in</span>
+									</div>
+								</Button>
+							</NavLink> : 
+							<NavDropdown aria-label="Dropdown menu" id="dropdown-button" drop="down" title="Join In" data-intro="Write a part to a story or see your stories." data-step="1">
+								<NavDropdown.Item aria-label="Write" href="write">Write</NavDropdown.Item>
+								<NavDropdown.Item aria-label="My Stories" href="my_stories">My Stories</NavDropdown.Item>
+							</NavDropdown>
+							}
+						</Nav>
+					</Navbar>
 				</Col>
 			</Row>
 			<Row>
