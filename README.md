@@ -5,9 +5,29 @@ https://github.com/richardgiddings/partofthestory_backend/
 
 This is using client side routing so that it can be deployed as a static site on Render.
 
-## Getting Started
+## Screenshots
 
-### Installation
+### About page
+
+![About page](screenshots/about_page.png?raw=true)
+
+### Logged Out - Home page
+
+![Logged Out - Home page](screenshots/logged_out_home_page.png?raw=true)
+
+### Logged In - Home page
+
+![Logged In - Home page](screenshots/logged_in_home_page.png?raw=true)
+
+### Logged In - My Stories
+
+![Logged In - My Stories](screenshots/logged_in_my_stories.png?raw=true)
+
+### Logged In - Write a part of a story
+
+![Logged In - Write a part of a story](screenshots/logged_in_write_part.png?raw=true)
+
+## Installation
 
 Install the dependencies:
 
@@ -15,7 +35,7 @@ Install the dependencies:
 npm install
 ```
 
-### Development
+## Development
 
 Start the development server with HMR:
 
