@@ -1,4 +1,12 @@
-## About
+## Introduction
+
+Did you ever play that game where you took it in turns to draw part of a picture. Each time you drew a part you folded the paper over and the next person only saw the end of your picture. At the end you laughed at your weird creation. Well...
+
+Write a story with other people. Every story has five parts. You are randomly assigned a part from an unfinished story when you choose to write. To help you some of the end of the previous part is shown to you along with the title of the story. If you are writing the first part you get to decide the story title too. Once the last part is complete the story is published for everyone to see.
+
+What is your story?
+
+## About the tech
 
 A front-end using react router that calls the FastAPI backend at:
 https://github.com/richardgiddings/partofthestory_backend/
