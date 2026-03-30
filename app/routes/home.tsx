@@ -81,6 +81,17 @@ export default function Home({
 			<Row>
 				<Col>
 					<Navbar>
+						{user_name != undefined && 
+						<Nav>
+							<NavDropdown aria-label="Dropdown menu" id="dropdown-button" drop="down" title="Join In" data-intro="Write a part to a story or see your stories." data-step="1">
+								<span className="ms-3">{user_name}</span>
+								<NavDropdown.Divider />
+								<NavDropdown.Item aria-label="Write" href="write">Write</NavDropdown.Item>
+								<NavDropdown.Item aria-label="My Stories" href="my_stories">My Stories</NavDropdown.Item>
+							</NavDropdown>
+						</Nav>
+						}
+						{user_name == undefined ? "" : "|"}
 						<Nav>
 							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-getting-started">What is this website about?</Tooltip>}>
 								<Nav.Link href="/about" data-intro="Find out more and how we use your data." data-step="4">
@@ -100,9 +111,8 @@ export default function Home({
 							</OverlayTrigger>
 						</Nav>
 						}
-						{user_name == undefined ? "" : "|"}
+						{user_name == undefined &&
 						<Nav>
-							{user_name == undefined ?
 							<NavLink to={login_link} end>
 								<Button aria-label="Google login" className="gsi-material-button" data-intro="Use your Google credentials to join in and start writing stories!" data-step="1">
 									<div className="gsi-material-button-state"></div>
@@ -120,15 +130,9 @@ export default function Home({
 										<span style={{display: "none"}}>Sign in</span>
 									</div>
 								</Button>
-							</NavLink> : 
-							<NavDropdown aria-label="Dropdown menu" id="dropdown-button" drop="down" title="Join In" data-intro="Write a part to a story or see your stories." data-step="1">
-								<span className="ms-3">{user_name}</span>
-								<NavDropdown.Divider />
-								<NavDropdown.Item aria-label="Write" href="write">Write</NavDropdown.Item>
-								<NavDropdown.Item aria-label="My Stories" href="my_stories">My Stories</NavDropdown.Item>
-							</NavDropdown>
-							}
+							</NavLink>
 						</Nav>
+						}
 					</Navbar>
 				</Col>
 			</Row>
