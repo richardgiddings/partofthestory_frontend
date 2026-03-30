@@ -70,7 +70,6 @@ export default function MyStories({
 	const [number_of_stories, setNumberOfStories] = useState<number>(0);
 
 	const my_user_id = user.user_id;
-	const user_name = user.user.user_name;
 
 	const fetchStories = async (pagination: any) => {
 
