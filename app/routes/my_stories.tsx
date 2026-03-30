@@ -127,6 +127,7 @@ export default function MyStories({
 									<span className="button_text">Home</span>
 								</Nav.Link>
 							</OverlayTrigger>
+							|
 							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-tour">What's on this page?</Tooltip>}>
 								<Nav.Link href="" onClick={() => introJs.tour().start() } className="pt-0">
 									<span className="button_text">Take a Tour</span>

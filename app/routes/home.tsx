@@ -90,19 +90,20 @@ export default function Home({
 									Getting Started
 								</Nav.Link>
 							</OverlayTrigger>
-						</Nav>
+						</Nav> |
 						{user_name == undefined ?
 						<Nav className="me-auto">
 							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-tour">What's on this page?</Tooltip>}>
 								<Nav.Link href="" onClick={() => introJs.tour().start() }>Take a Tour</Nav.Link>
 							</OverlayTrigger>
 						</Nav> :
-						<Nav >
+						<Nav>
 							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-tour">What's on this page?</Tooltip>}>
 								<Nav.Link href="" onClick={() => introJs.tour().start() }>Take a Tour</Nav.Link>
 							</OverlayTrigger>
 						</Nav>
 						}
+						{user_name == undefined ? "" : "|"}
 						<Nav>
 							{user_name == undefined ?
 							<NavLink to={login_link} end>
@@ -155,7 +156,7 @@ export default function Home({
 										<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-get-random-story">Get a random story</Tooltip>}>
 											<Button aria-label="Get a random story" onClick={() => navigate(".", { replace: true })} className="ms-1" data-intro="Get a random completed story." data-step="2">
 												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-													<path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
+													<path fillRule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
 													<path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
 												</svg>
 												<span className="button_text">Get Another Story</span>
