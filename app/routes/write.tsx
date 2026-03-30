@@ -39,19 +39,15 @@ export async function clientLoader() {
 
 	const api_url = import.meta.env.VITE_APP_URL;
 
-    let user_status = null;
 	let part = null
 	let message = "";
     let prev_part_text = "";
 
     try {
-    	const user_response = await fetch(api_url+"/user/", {credentials: "include"})
-		if (!user_response.ok) {
+		const part_response = await fetch(api_url+"/get_part/", {credentials: "include"})
+		if (!part_response.ok) {
 			return redirect("/");
 		}
-		user_status = await user_response.json();
-
-		const part_response = await fetch(api_url+"/get_part/", {credentials: "include"})
 		part = await part_response.json();
 
 		if(part.part_number > 1) {
@@ -67,7 +63,7 @@ export async function clientLoader() {
 		console.log('There was an error', error);
     }
 
-  	return {api_url, part, prev_part_text, user_status, message};
+  	return {api_url, part, prev_part_text, message};
 }
 
 
@@ -101,20 +97,21 @@ export async function clientAction({
 			const result = await save_response.json();
 			if (result.status >= 200 && result.status <= 299) {
 				return "Story Saved";
-			}
-
-			if(result.results.length > 0) {
+			} 
+			
+			if(result.status == 400 && result.results.length > 0) {
 				let bad_words = "";
 				for (let i = 0; i < result.results.length; i++) {
 					bad_words = bad_words + result.results[i].word + " "
 				}
 				return "Story wasn't saved due to these words: " + bad_words;
 			}
-
-			return "Something went wrong."
+			else {
+				return redirect("/");
+			}
 		}
 		catch(error) {
-			console.log('There was an error', error);
+			console.log('There was an error saving a part', error);
 		}
 	}
 	else if (action == "submit") {
@@ -137,18 +134,19 @@ export async function clientAction({
 				return redirect("/?message=Story part submitted");
 			}
 
-			if(result.results.length > 0) {
+			if(result.status == 400 && result.results.length > 0) {
 				let bad_words = ""
 				for (let i = 0; i < result.results.length; i++) {
 					bad_words = bad_words + result.results[i].word + " "
 				}
 				return "Story wasn't saved due to these words: " + bad_words
 			}
-			
-			return "Something went wrong..."
+			else {
+				return redirect("/");
+			}
 		}
 		catch(error) {
-			console.log('There was an error', error);
+			console.log('There was an error submiting a part', error);
 		}
 	}
 	else {
@@ -162,12 +160,7 @@ export default function Write({
 	loaderData
 }: Route.ComponentProps) {
 
-	const {api_url, part, prev_part_text, user_status, message} = loaderData;
-
-	if(!user_status) {
-		throw redirect("/");
-	}
-	const user_name = user_status?.user?.user_name;
+	const {api_url, part, prev_part_text, message} = loaderData;
 
 	const [count, setCount] = useState(part?.part_text?.length);
 	const part_number = part.part_number;
