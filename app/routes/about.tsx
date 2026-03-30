@@ -19,24 +19,8 @@ export function meta({}: Route.MetaArgs) {
 	];
 }
 
+export default function About() {
 
-export async function clientLoader() {
-
-	const api_url = import.meta.env.VITE_APP_URL;
-
-	const response = await fetch(api_url+"/user/", {credentials: "include"})
-	const user_status = await response.json();
-
-  	return user_status;
-}
-
-
-export default function About({
-	loaderData,
-}: Route.ComponentProps) {
-
-    const user_status = loaderData;
-    const user_name = user_status?.user?.user_name;
 	const contact_email = import.meta.env.VITE_APP_EMAIL
 
   	return (
