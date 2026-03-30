@@ -75,9 +75,6 @@ export default function Home({
 		<Container fluid>
 			<Row>
 				<Col className="ms-1 mt-3">
-					{user_name !== undefined ?
-					<span>{user_name}</span>
-					: ""}
 					<h1 className="parisienne-regular mt-2 mb-0">Be part of the story</h1>
 				</Col>
 			</Row>
@@ -125,6 +122,8 @@ export default function Home({
 								</Button>
 							</NavLink> : 
 							<NavDropdown aria-label="Dropdown menu" id="dropdown-button" drop="down" title="Join In" data-intro="Write a part to a story or see your stories." data-step="1">
+								<span className="ms-3">{user_name}</span>
+								<NavDropdown.Divider />
 								<NavDropdown.Item aria-label="Write" href="write">Write</NavDropdown.Item>
 								<NavDropdown.Item aria-label="My Stories" href="my_stories">My Stories</NavDropdown.Item>
 							</NavDropdown>

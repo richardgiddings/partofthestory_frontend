@@ -179,9 +179,6 @@ export default function Write({
 		<Container fluid>
 			<Row>
 				<Col className="ms-1 mt-3">
-					{user_name !== undefined ?
-					<span>{user_name}</span>
-					: ""}
 					<h1 className="parisienne-regular mt-2 mb-0">Be part of the story</h1>
 				</Col>
 			</Row>
