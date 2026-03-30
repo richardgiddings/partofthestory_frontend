@@ -24,7 +24,7 @@ import 'intro.js/themes/introjs-modern.css';
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Be Part of The Story" },
-    { name: "description", content: "Where will your story go?" },
+    { name: "description", content: "The Home page. From here you can login, write or see stories, or go to the Getting Started page." },
   ];
 }
 

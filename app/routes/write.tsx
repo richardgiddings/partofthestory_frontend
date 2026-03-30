@@ -30,7 +30,7 @@ import 'intro.js/themes/introjs-modern.css';
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Be Part of The Story" },
-    { name: "description", content: "Where will your story go?" },
+    { name: "description", content: "The Write page. Here you get assigned a random part from a story to contribute with." },
   ];
 }
 
