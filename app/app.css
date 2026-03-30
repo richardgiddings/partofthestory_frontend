@@ -16,7 +16,7 @@ body {
 
 .button_text {
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: bottom;
     line-height: normal;
     margin-left: 5px;
 }
