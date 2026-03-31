@@ -17,6 +17,8 @@ body {
 .icon {
     vertical-align: text-top;
     margin-right: 5px;
+    position: relative;
+    top: 0.04em;
 }
 
 .nav-link, .dropdown-item {
