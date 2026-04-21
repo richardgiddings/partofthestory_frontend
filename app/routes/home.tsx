@@ -1,6 +1,7 @@
 import type { Route } from './+types/home';
 import { NavLink } from 'react-router';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 // Bootstrap styling
 import Container from 'react-bootstrap/Container';
@@ -13,6 +14,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // JS Tour
@@ -55,8 +57,13 @@ export async function clientLoader({
 
 	const [,searchParams] = request.url.split("?");
 	const message = new URLSearchParams(searchParams).get("message");
+	const first_visit = new URLSearchParams(searchParams).get("first_visit");
+	let show_modal: boolean = true;
+	if(first_visit === "no") {
+		show_modal = false;
+	}
 
-  	return {api_url, story, user_status, message};
+  	return {api_url, story, user_status, message, show_modal};
 }
 
 
@@ -65,14 +72,31 @@ export default function Home({
 }: Route.ComponentProps) {
 
 	const navigate = useNavigate();
-	const {api_url, story, user_status, message} = loaderData;
+	const {api_url, story, user_status, message, show_modal} = loaderData;
 
 	const login_link = api_url + "/login/"
 
 	const user_name = user_status?.user?.user_name;
 
+	const [show, setShow] = useState(show_modal);
+  	const handleClose = () => setShow(false);
+
   	return (
 		<Container fluid>
+			<Modal show={show}>
+				<Modal.Header>
+					<h1 className="parisienne-regular mt-2 mb-0">Be part of the story</h1>
+				</Modal.Header>
+				<Modal.Body>
+					<p>Did you ever play that game where you took it in turns to draw part of a picture. Each time you drew a part you folded the paper over and the next person only saw the end of your picture. At the end you laughed at your weird creation. Well...</p>
+					<p>Write a story with other people. Every story has five parts. You are randomly assigned a part from an unfinished story when you choose to write. To help you some of the end of the previous part is shown to you along with the title of the story. If you are writing the first part you get to decide the story title too. Once the last part is complete the story is published for everyone to see.</p>
+					<p>What is your story?</p>
+				</Modal.Body>
+				<Modal.Footer>
+					<Button variant="secondary" onClick={handleClose}>Close</Button>
+				</Modal.Footer>
+			</Modal>
+
 			<Row>
 				<Col className="ms-1 mt-3">
 					<h1 className="parisienne-regular mt-2 mb-0">Be part of the story</h1>
