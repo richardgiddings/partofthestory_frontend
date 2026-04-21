@@ -32,8 +32,8 @@ export function meta({}: Route.MetaArgs) {
 
 export async function clientLoader() {
 
-	const api_url = import.meta.env.VITE_APP_URL;
-	let user = null;
+	const api_url: string = import.meta.env.VITE_APP_URL;
+	let user: any = null;
 
 	try {
 		const response = await fetch(api_url+"/user/", {credentials: "include"});
@@ -69,7 +69,7 @@ export default function MyStories({
 	const [next_link, setNextLink] = useState([]);
 	const [number_of_stories, setNumberOfStories] = useState<number>(0);
 
-	const my_user_id = user.user_id;
+	const my_user_id: string = user.user_id;
 
 	const fetchStories = async (pagination: any) => {
 

@@ -35,10 +35,10 @@ export async function clientLoader({
 	request,
 }: Route.ClientLoaderArgs) {
 
-	const api_url = import.meta.env.VITE_APP_URL;
+	const api_url: string = import.meta.env.VITE_APP_URL;
 
-	let story = null;
-	let user_status = null;
+	let story: any = null;
+	let user_status: any = null;
 	try {
 		const story_response = await fetch(api_url+"/random_complete_story/")
 		if (!story_response.ok) {
@@ -56,8 +56,8 @@ export async function clientLoader({
 	}
 
 	const [,searchParams] = request.url.split("?");
-	const message = new URLSearchParams(searchParams).get("message");
-	const first_visit = new URLSearchParams(searchParams).get("first_visit");
+	const message: string | null = new URLSearchParams(searchParams).get("message");
+	const first_visit: string | null = new URLSearchParams(searchParams).get("first_visit");
 	let show_modal: boolean = true;
 	if(first_visit === "no") {
 		show_modal = false;
@@ -74,9 +74,9 @@ export default function Home({
 	const navigate = useNavigate();
 	const {api_url, story, user_status, message, show_modal} = loaderData;
 
-	const login_link = api_url + "/login/"
+	const login_link: string = api_url + "/login/"
 
-	const user_name = user_status?.user?.user_name;
+	const user_name: string = user_status?.user?.user_name;
 
 	const [show, setShow] = useState(show_modal);
   	const handleClose = () => setShow(false);

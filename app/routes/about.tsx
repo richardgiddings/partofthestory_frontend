@@ -21,7 +21,7 @@ export function meta({}: Route.MetaArgs) {
 
 export default function About() {
 
-	const contact_email = import.meta.env.VITE_APP_EMAIL
+	const contact_email: string = import.meta.env.VITE_APP_EMAIL
 
   	return (
 		<Container fluid>

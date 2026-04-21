@@ -37,11 +37,11 @@ export function meta({}: Route.MetaArgs) {
 
 export async function clientLoader() {
 
-	const api_url = import.meta.env.VITE_APP_URL;
+	const api_url: string = import.meta.env.VITE_APP_URL;
 
 	let part = null
-	let message = "";
-    let prev_part_text = "";
+	let message: string = "";
+    let prev_part_text: string = "";
 
     try {
 		const part_response = await fetch(api_url+"/get_part/", {credentials: "include"})
@@ -73,11 +73,11 @@ export async function clientAction({
 
 	let formData = await request.formData();
 
-	let story_title = formData.get("story_title");
-	let part_text = formData.get("part_text");
-	let part_id = formData.get("part_id");
-	let api_url = formData.get("api_url");
-	let action = formData.get("action");
+	let story_title = formData.get("story_title") as String;
+	let part_text = formData.get("part_text") as String;
+	let part_id = formData.get("part_id") as String;
+	let api_url = formData.get("api_url") as String;
+	let action = formData.get("action") as String;
 
 	if(action == "save"){
 		try {
@@ -100,7 +100,7 @@ export async function clientAction({
 			} 
 			
 			if(result.status == 400 && result.results.length > 0) {
-				let bad_words = "";
+				let bad_words: string = "";
 				for (let i = 0; i < result.results.length; i++) {
 					bad_words = bad_words + result.results[i].word + " "
 				}
@@ -135,7 +135,7 @@ export async function clientAction({
 			}
 
 			if(result.status == 400 && result.results.length > 0) {
-				let bad_words = ""
+				let bad_words: string = "";
 				for (let i = 0; i < result.results.length; i++) {
 					bad_words = bad_words + result.results[i].word + " "
 				}
@@ -163,7 +163,7 @@ export default function Write({
 	const {api_url, part, prev_part_text, message} = loaderData;
 
 	const [count, setCount] = useState(part?.part_text?.length);
-	const part_number = part.part_number;
+	const part_number: number = part.part_number;
 
 	// Have there been changes to the form?
 	const [isDirty, setIsDirty] = useState(false);
