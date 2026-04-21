@@ -15,6 +15,10 @@ This is using client side routing so that it can be deployed as a static site on
 
 ## Screenshots
 
+### When you first visit the site
+
+![first visit](screenshots/first_visit.png?raw=true)
+
 ### About page
 
 ![About page](screenshots/about_page.png?raw=true)
