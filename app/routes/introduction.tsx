@@ -23,7 +23,7 @@ export default function Introduction() {
   	return (
         <Container className="intro-screen">
             <Row>
-				<Col className="mt-3 block-temp">
+				<Col className="mt-3">
 					<h1 className="parisienne-regular mt-2 mb-0">Be part of the story</h1>
 				</Col>
 			</Row>
