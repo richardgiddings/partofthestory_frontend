@@ -56,19 +56,14 @@ export async function clientLoader({
 	}
 
 	const [,searchParams] = request.url.split("?");
-	const first_visit: string | null = new URLSearchParams(searchParams).get("first_visit");
 	const message: string | null = new URLSearchParams(searchParams).get("message");
 
 	let show_message_modal: boolean = false;
 	if(message) {
 		show_message_modal = true;
 	}
-	let show_about_modal: boolean = true;
-	if(first_visit === "no") {
-		show_about_modal = false;
-	}
 
-  	return {api_url, story, user_status, message, show_about_modal, show_message_modal};
+  	return {api_url, story, user_status, message, show_message_modal};
 }
 
 
@@ -77,33 +72,17 @@ export default function Home({
 }: Route.ComponentProps) {
 
 	const navigate = useNavigate();
-	const {api_url, story, user_status, message, show_about_modal, show_message_modal} = loaderData;
+	const {api_url, story, user_status, message, show_message_modal} = loaderData;
 
 	const login_link: string = api_url + "/login/"
 
 	const user_name: string = user_status?.user?.user_name;
-
-	const [showAbout, setShowAbout] = useState(show_about_modal);
-  	const handleCloseAbout = () => setShowAbout(false);
 
 	const [showMessage, setShowMessage] = useState(show_message_modal);
   	const handleCloseMessage = () => setShowMessage(false);
 
   	return (
 		<Container fluid>
-			<Modal show={showAbout} size="lg">
-				<Modal.Header>
-					<h1 className="parisienne-regular mt-2 mb-0">Be part of the story</h1>
-				</Modal.Header>
-				<Modal.Body>
-					<p>Did you ever play that game where you took it in turns to draw part of a picture. Each time you drew a part you folded the paper over and the next person only saw the end of your picture. At the end you laughed at your weird creation. Well...</p>
-					<p>Write a story with other people. Every story has five parts. You are randomly assigned a part from an unfinished story when you choose to write. To help you some of the end of the previous part is shown to you along with the title of the story. If you are writing the first part you get to decide the story title too. Once the last part is complete the story is published for everyone to see.</p>
-					<p>What is your story?</p>
-				</Modal.Body>
-				<Modal.Footer>
-					<Button variant="secondary" onClick={handleCloseAbout}>Close</Button>
-				</Modal.Footer>
-			</Modal>
 			<Modal show={showMessage}>
 				<Modal.Header>
 					<h1 className="parisienne-regular mt-2 mb-0">Be part of the story</h1>
@@ -129,8 +108,8 @@ export default function Home({
 							<NavDropdown aria-label="Dropdown menu" id="dropdown-button" drop="down" title="Join In" data-intro="Write a part to a story or see your stories." data-step="1">
 								<span className="ms-3">{user_name}</span>
 								<NavDropdown.Divider />
-								<NavDropdown.Item aria-label="Write" href="write">Write</NavDropdown.Item>
-								<NavDropdown.Item aria-label="My Stories" href="my_stories">My Stories</NavDropdown.Item>
+								<NavDropdown.Item aria-label="Write" href="/write">Write</NavDropdown.Item>
+								<NavDropdown.Item aria-label="My Stories" href="/my_stories">My Stories</NavDropdown.Item>
 							</NavDropdown>
 						</Nav>
 						}
