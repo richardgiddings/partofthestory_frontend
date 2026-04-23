@@ -5,9 +5,9 @@ import {
 } from "@react-router/dev/routes";
 
 export default [
-    index("routes/introduction.tsx"),
+    index("routes/about.tsx"),
     route("home", "routes/home.tsx"),
-    route("about", "routes/about.tsx"),
+    route("getting_started", "routes/getting_started.tsx"),
     route("write", "routes/write.tsx"),
     route("my_stories", "routes/my_stories.tsx")
 ] satisfies RouteConfig;

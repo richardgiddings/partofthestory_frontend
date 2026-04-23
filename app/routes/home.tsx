@@ -116,7 +116,7 @@ export default function Home({
 						{user_name == undefined ? "" : "|"}
 						<Nav>
 							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-page-getting-started">What is this website about?</Tooltip>}>
-								<Nav.Link href="/about" data-intro="Find out more and how we use your data." data-step="4">
+								<Nav.Link href="/getting_started" data-intro="Find out more and how we use your data." data-step="4">
 									Getting Started
 								</Nav.Link>
 							</OverlayTrigger>
