@@ -56,14 +56,19 @@ export async function clientLoader({
 	}
 
 	const [,searchParams] = request.url.split("?");
-	const message: string | null = new URLSearchParams(searchParams).get("message");
 	const first_visit: string | null = new URLSearchParams(searchParams).get("first_visit");
-	let show_modal: boolean = true;
+	const message: string | null = new URLSearchParams(searchParams).get("message");
+
+	let show_message_modal: boolean = false;
+	if(message) {
+		show_message_modal = true;
+	}
+	let show_about_modal: boolean = true;
 	if(first_visit === "no") {
-		show_modal = false;
+		show_about_modal = false;
 	}
 
-  	return {api_url, story, user_status, message, show_modal};
+  	return {api_url, story, user_status, message, show_about_modal, show_message_modal};
 }
 
 
@@ -72,18 +77,21 @@ export default function Home({
 }: Route.ComponentProps) {
 
 	const navigate = useNavigate();
-	const {api_url, story, user_status, message, show_modal} = loaderData;
+	const {api_url, story, user_status, message, show_about_modal, show_message_modal} = loaderData;
 
 	const login_link: string = api_url + "/login/"
 
 	const user_name: string = user_status?.user?.user_name;
 
-	const [show, setShow] = useState(show_modal);
-  	const handleClose = () => setShow(false);
+	const [showAbout, setShowAbout] = useState(show_about_modal);
+  	const handleCloseAbout = () => setShowAbout(false);
+
+	const [showMessage, setShowMessage] = useState(show_message_modal);
+  	const handleCloseMessage = () => setShowMessage(false);
 
   	return (
 		<Container fluid>
-			<Modal show={show}>
+			<Modal show={showAbout} size="lg">
 				<Modal.Header>
 					<h1 className="parisienne-regular mt-2 mb-0">Be part of the story</h1>
 				</Modal.Header>
@@ -93,7 +101,18 @@ export default function Home({
 					<p>What is your story?</p>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="secondary" onClick={handleClose}>Close</Button>
+					<Button variant="secondary" onClick={handleCloseAbout}>Close</Button>
+				</Modal.Footer>
+			</Modal>
+			<Modal show={showMessage}>
+				<Modal.Header>
+					<h1 className="parisienne-regular mt-2 mb-0">Be part of the story</h1>
+				</Modal.Header>
+				<Modal.Body>
+					{message}
+				</Modal.Body>
+				<Modal.Footer>
+					<Button variant="secondary" onClick={handleCloseMessage}>Close</Button>
 				</Modal.Footer>
 			</Modal>
 
@@ -176,27 +195,16 @@ export default function Home({
 							))}
 						</Card.Body>
 						}
-						<Card.Footer className="text-muted">
-							<Container fluid className="p-0">
-								<Row>
-									<Col className="d-grid mt-2">
-										<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-get-random-story">Get a random story</Tooltip>}>
-											<Button aria-label="Get a random story" onClick={() => navigate(".", { replace: true })} data-intro="Get a random completed story." data-step="2">
-												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-clockwise icon" viewBox="0 0 16 16">
-													<path fillRule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
-													<path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
-												</svg>
-												Get Another Story
-											</Button>
-										</OverlayTrigger>
-									</Col>
-								</Row>
-								<Row>
-									<Col className="text-muted mt-2 text-end">
-										{message}
-									</Col>
-								</Row>
-							</Container>
+						<Card.Footer className="text-muted d-grid">
+							<OverlayTrigger placement="top" overlay={<Tooltip id="button-tooltip-get-random-story">Get a random story</Tooltip>}>
+								<Button aria-label="Get a random story" onClick={() => navigate(".", { replace: true })} data-intro="Get a random completed story." data-step="2">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-clockwise icon" viewBox="0 0 16 16">
+										<path fillRule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
+										<path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
+									</svg>
+									Get Another Story
+								</Button>
+							</OverlayTrigger>
 						</Card.Footer>
 					</Card>
 				</Col>
