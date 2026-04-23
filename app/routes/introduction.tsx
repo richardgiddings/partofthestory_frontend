@@ -1,4 +1,4 @@
-import type { Route } from './+types/index';
+import type { Route } from './+types/introduction';
 import { useNavigate } from 'react-router-dom';
 
 // Bootstrap styling
@@ -35,7 +35,7 @@ export default function Introduction() {
 				</Col>
 			</Row>
             <Row>
-				<Col>
+				<Col className="ms-1 mt-1">
                     <Button aria-label="Go to home page" onClick={() => navigate("home", { replace: true })}>Ok, let's go!</Button>
                 </Col>
             </Row>
