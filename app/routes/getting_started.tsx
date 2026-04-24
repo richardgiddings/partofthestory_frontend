@@ -19,7 +19,7 @@ export function meta({}: Route.MetaArgs) {
 	];
 }
 
-export default function About() {
+export default function GettingStarted() {
 
 	const contact_email: string = import.meta.env.VITE_APP_EMAIL
 
