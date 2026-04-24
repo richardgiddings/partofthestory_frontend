@@ -5,7 +5,7 @@ export default function Footer() {
   	return (
         <Navbar className="justify-content-end me-1 pt-0">
             <Navbar.Text>
-                View my code on <a href="https://github.com/richardgiddings" target="_blank">GitHub</a>
+                View my code on <a href="https://github.com/richardgiddings/partofthestory_frontend" target="_blank">GitHub</a>
             </Navbar.Text>
         </Navbar>
 	);
