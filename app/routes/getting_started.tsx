@@ -11,6 +11,8 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import Footer from "../components/footer";
+
 
 export function meta({}: Route.MetaArgs) {
 	return [
@@ -75,6 +77,9 @@ export default function GettingStarted() {
 						</Card.Body>
 					</Card>
 				</Col>
+			</Row>
+			<Row>
+				<Col><Footer /></Col>
 			</Row>
 		</Container>
 	);

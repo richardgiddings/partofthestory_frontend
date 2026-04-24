@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { redirect, Form } from 'react-router';
 import ReactRouterPrompt from 'react-router-prompt';
 
+import Footer from "../components/footer";
+
 // Bootstrap styling
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -295,6 +297,9 @@ export default function Write({
 						</Card.Footer>
 					</Card>
 				</Col>
+			</Row>
+			<Row>
+				<Col><Footer /></Col>
 			</Row>
 		</Container>
 	);

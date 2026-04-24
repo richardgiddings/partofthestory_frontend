@@ -3,6 +3,8 @@ import { NavLink } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
+import Footer from "../components/footer";
+
 // Bootstrap styling
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -187,6 +189,9 @@ export default function Home({
 						</Card.Footer>
 					</Card>
 				</Col>
+			</Row>
+			<Row>
+				<Col><Footer /></Col>
 			</Row>
 		</Container>
 	);

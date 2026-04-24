@@ -3,6 +3,8 @@ import { redirect } from 'react-router';
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
+import Footer from "../components/footer";
+
 // Bootstrap styling
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -194,6 +196,9 @@ export default function MyStories({
 					</Card>
 					}
 				</Col>
+			</Row>
+			<Row>
+				<Col><Footer /></Col>
 			</Row>
 		</Container>				
 	);
